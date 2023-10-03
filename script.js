@@ -1,4 +1,4 @@
-function reload () {
+function reload (team1Roster = [], team2Roster = []) {
   const team1Name = localStorage.getItem('team1')
   const team2Name = localStorage.getItem('team2')
 
@@ -6,13 +6,8 @@ function reload () {
   document.getElementById('team1').innerHTML = team1Name || 'Team 1'
   document.getElementById('team2').innerHTML = team2Name || 'Team 2'
 
-  // Get team rosters from localStorage
-  const team1Roster = JSON.parse(localStorage.getItem('teamMembers'))[team1Name] || []
-  const team2Roster = JSON.parse(localStorage.getItem('teamMembers'))[team2Name] || []
-
   console.log(team1Roster)
-
-  console.log(JSON.parse(localStorage.getItem('team1Roster')))
+  console.log(team2Roster)
 
   // Update Team 1 roster
   const team1RosterElement = document.querySelector('.team1-roster ul')
@@ -68,8 +63,6 @@ function reload () {
 
       team1RosterElement.appendChild(listItem)
     })
-  } else {
-    team1RosterElement.innerHTML = '<p>No players in this team.</p>'
   }
 
   // Update Team 2 roster
@@ -126,8 +119,6 @@ function reload () {
 
       team2RosterElement.appendChild(listItem)
     })
-  } else {
-    team2RosterElement.innerHTML = '<p>No players in this team.</p>'
   }
 }
 
@@ -204,6 +195,13 @@ function fetchGameData () {
     .then(response => response.json())
     .then(data => {
       updateScoreboardHUD(data)
+
+      // Update team rosters based on the response
+      const team1Roster = data.redPlayers || []
+      const team2Roster = data.bluePlayers || []
+
+      // Call the reload function with updated rosters
+      reload(team1Roster, team2Roster)
     })
     .catch(error => console.error('Error:', error))
 }
