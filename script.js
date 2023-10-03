@@ -1,4 +1,7 @@
-function reload (team1Roster = [], team2Roster = []) {
+let team1Roster = []
+let team2Roster = []
+
+function reload () {
   const team1Name = localStorage.getItem('team1')
   const team2Name = localStorage.getItem('team2')
 
@@ -126,14 +129,10 @@ reload()
 
 let lastTeam1 = localStorage.getItem('team1')
 let lastTeam2 = localStorage.getItem('team2')
-let lastTeam1Roster = JSON.parse(localStorage.getItem('teamMembers'))['Team 1'] || []
-let lastTeam2Roster = JSON.parse(localStorage.getItem('teamMembers'))['Team 2'] || []
 
 function checkAndUpdate () {
   const currentTeam1 = localStorage.getItem('team1')
   const currentTeam2 = localStorage.getItem('team2')
-  const currentTeam1Roster = JSON.parse(localStorage.getItem('teamMembers'))['Team 1'] || []
-  const currentTeam2Roster = JSON.parse(localStorage.getItem('teamMembers'))['Team 2'] || []
 
   let hasChanges = false
 
@@ -144,19 +143,12 @@ function checkAndUpdate () {
     hasChanges = true
   }
 
-  if (!arraysAreEqual(currentTeam1Roster, lastTeam1Roster) ||
-      !arraysAreEqual(currentTeam2Roster, lastTeam2Roster)) {
-    hasChanges = true
-  }
-
   if (hasChanges) {
     reload() // Update the information
 
     // Update last known state
     lastTeam1 = currentTeam1
     lastTeam2 = currentTeam2
-    lastTeam1Roster = currentTeam1Roster.slice()
-    lastTeam2Roster = currentTeam2Roster.slice()
   }
 
   // Schedule the next check
@@ -197,11 +189,11 @@ function fetchGameData () {
       updateScoreboardHUD(data)
 
       // Update team rosters based on the response
-      const team1Roster = data.redPlayers || []
-      const team2Roster = data.bluePlayers || []
+      team1Roster = data.redPlayers || []
+      team2Roster = data.bluePlayers || []
 
       // Call the reload function with updated rosters
-      reload(team1Roster, team2Roster)
+      reload()
     })
     .catch(error => console.error('Error:', error))
 }
@@ -245,9 +237,6 @@ function updatePlayerHUD (player, data) {
 }
 
 function fetchPlayerData () {
-  const team1Roster = JSON.parse(localStorage.getItem('teamMembers'))[localStorage.getItem('team1')] || []
-  const team2Roster = JSON.parse(localStorage.getItem('teamMembers'))[localStorage.getItem('team2')] || []
-
   const allPlayers = [...team1Roster, ...team2Roster]
 
   allPlayers.forEach(player => {
