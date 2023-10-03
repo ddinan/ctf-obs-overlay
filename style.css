@@ -1,0 +1,216 @@
+@font-face {
+  font-family: 'Mona Sans';
+  src: url('./fonts/Mona-Sans.otf');
+}
+
+* {
+  margin: 0;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  /*background-color: transparent;*/
+
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+}
+
+.scoreboard {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background: #060c23;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 24px;
+  color: #ffffff;
+}
+
+.team-content, .score-content, .event-content {
+  display: flex;
+  align-items: center;
+}
+
+.team-content {
+  padding: 0px 20px;
+  /*margin-bottom: 25px;*/
+  font-family: 'Mona Sans';
+}
+
+.team-content:nth-of-type(1) {
+  background: #da2525;
+}
+
+.team-content:nth-of-type(5) {
+  background: #108cff;
+}
+
+.team-content p {
+  margin-right: 10px;
+}
+
+.score-content {
+  background-color: transparent;
+  width: 20px;
+  font-size: 48px;
+  padding: 0px 25px;
+}
+
+/* Unused */
+.scores-extra {
+  display: flex;
+  justify-content: space-between;
+  width: 200px;
+  background: red;
+}
+
+.timer {
+  padding: 0px 50px;
+  font-size: 32px;
+  margin-top: 12.5px;
+}
+
+.team-input {
+  display: flex;
+  justify-content: space-between;
+  width: 400px;
+  margin-bottom: 20px;
+}
+
+.team-input input[type="text"] {
+  width: 180px;
+  padding: 5px;
+  font-size: 18px;
+}
+
+.score-input {
+  display: flex;
+  justify-content: space-between;
+  width: 200px;
+}
+
+.score-input input[type="number"] {
+  width: 80px;
+  padding: 5px;
+  font-size: 18px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+}
+
+.button, .button-small {
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.button {
+  background-color: #9147ff;
+  padding: 10px 20px;
+  font-size: 16px;
+  margin: 0 10px;
+}
+
+.button:hover {
+  background-color: #691fb3;
+}
+
+.button-small {
+  background-color: #DC3545;
+  padding: 5px;
+  font-size: 12px;
+  margin: 0 10px;
+}
+
+.button-small:hover {
+  background-color: #a0222c;
+}
+
+.team1-roster, .team2-roster {
+  position: absolute;
+  bottom: 100px;
+  width: 400px;
+  padding: 15px;
+  text-align: center; /* Center the roster content */
+}
+
+.team1-roster {
+  left: 10px;
+}
+
+.team2-roster {
+  right: 10px;
+}
+
+.team1-roster h2, .team2-roster h2 {
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.team1-roster ul, .team2-roster ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.team1-roster li, .team2-roster li {
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.player-item {
+  list-style-type: none;
+  display: flex;
+  align-items: center;
+}
+
+.player-item img {
+  width: 48px;
+  height: 48px;
+}
+
+.team1-roster .player-item img {
+  margin-right: 10px;
+}
+
+.team2-roster .player-item img {
+  margin-left: 10px;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  color: white;
+}
+
+.username {
+  margin: 0;
+  padding: 5px 20px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.stats {
+  margin: 0;
+  padding: 10px 20px;
+  background: #060c23DD;
+  font-size: 14px;
+}
+
+.red {
+  background: #DC3545DD;
+}
+
+.blue {
+  background: #108CFFDD;
+}
+
+

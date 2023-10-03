@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tournament Overlay Controls</title>
+    <link rel="stylesheet" type="text/css" href="./style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Team Management</h1>
+    
+        <div class="team-input">
+            <label for="team1-selector">Team 1</label>
+            <select id="team1-selector"></select>
+    
+            <label for="team2-selector">Team 2</label>
+            <select id="team2-selector"></select>
+        </div>
+    
+        <div class="team-input">
+            <button class="button" id="add-team-button">Add Team</button>
+            <input type="text" id="team-name-input" placeholder="Team Name">
+        </div>
+    
+        <h2>Team List</h2>
+    
+        <ul id="team-list"></ul>
+        <br>
+    
+        <h1>Player Management</h1>
+    
+        <div class="team-input">
+            <button class="button" id="add-player-button">Add Player</button>
+            <input type="text" id="player-name-input" placeholder="Player Name">
+            <select id="player-team-selector"></select>
+        </div>
+    
+        <h2>Player List</h2>
+    
+        <ul id="player-list"></ul>
+        <br>
+    
+        <h1>Score Management</h1>
+    
+        <div class="score-input">
+            <input type="number" id="score1-input" min="0" value="0">
+            <input type="number" id="score2-input" min="0" value="0">
+        </div>
+    </div>
+
+    <script src="./controls.js"></script>
+</body>
+</html>
