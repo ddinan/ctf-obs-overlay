@@ -24,7 +24,6 @@ body {
   display: flex;
   justify-content: center;
   margin-top: 20px;
-  margin-bottom: 20px;
   background: #060c23;
   font-weight: bold;
   text-transform: uppercase;
@@ -44,13 +43,15 @@ body {
 }
 
 .team-content:nth-of-type(1) {
-  background: #da2525;
+  /*background: #e12033;*/
+  background: linear-gradient(45deg, #e90d2a40, #e90d2a);
   padding-right: 20px;
   justify-content: left;
 }
 
 .team-content:nth-of-type(5) {
-  background: #108cff;
+  /*background: #108cff;*/
+  background: linear-gradient(45deg, #108fff, #108fff40);
   padding-left: 20px;
   justify-content: right;
 }
@@ -141,7 +142,7 @@ body {
 
 .team1-roster, .team2-roster {
   position: absolute;
-  bottom: 100px;
+  bottom: 50%;
   width: 400px;
   padding: 15px;
   text-align: center; /* Center the roster content */
@@ -232,9 +233,39 @@ body {
 }
 
 .unplayed {
-  background-color: #00000038;
+  background-color: #00000050;
 }
 
 #team2-wins {
   margin-right: 10px;
 }
+
+.underlay {
+  position: relative;
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  padding: 10px 40px;
+}
+
+.underlay::before, .underlay::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  background-color: #1a223d;
+  z-index: -1;
+}
+
+.underlay::before {
+  left: 0;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 30% 100%);
+}
+
+.underlay::after {
+  right: 0;
+  clip-path: polygon(100% 0, 0 0, 0% 100%, 70% 100%);
+}
+
