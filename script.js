@@ -9,6 +9,8 @@ function reload () {
   document.getElementById('team1').innerHTML = team1Name || 'Team 1'
   document.getElementById('team2').innerHTML = team2Name || 'Team 2'
 
+  setTeamNameFontSize()
+
   // Update Team 1 roster
   const team1RosterElement = document.querySelector('.team1-roster ul')
   team1RosterElement.innerHTML = ''
@@ -127,6 +129,24 @@ function reload () {
 }
 
 reload()
+
+function setTeamNameFontSize () {
+  const team1NameElement = document.getElementById('team1')
+  const team2NameElement = document.getElementById('team2')
+
+  const maxFontSize = 24 // Maximum font size you want to allow
+  const maxNameLength = 6 // Maximum characters you want to display without resizing
+
+  // Calculate the font size based on the length of the team names
+  const team1Name = team1NameElement.textContent
+  const team2Name = team2NameElement.textContent
+  const team1FontSize = Math.min(maxFontSize, maxNameLength / team1Name.length * maxFontSize)
+  const team2FontSize = Math.min(maxFontSize, maxNameLength / team2Name.length * maxFontSize)
+
+  // Set the calculated font size
+  team1NameElement.style.fontSize = `${team1FontSize}px`
+  team2NameElement.style.fontSize = `${team2FontSize}px`
+}
 
 let lastTeam1 = localStorage.getItem('team1')
 let lastTeam2 = localStorage.getItem('team2')

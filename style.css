@@ -38,17 +38,21 @@ body {
 }
 
 .team-content {
-  padding: 0px 20px;
-  /*margin-bottom: 25px;*/
   font-family: 'Mona Sans';
+  width: 300px;
+  max-width: 300px;
 }
 
 .team-content:nth-of-type(1) {
   background: #da2525;
+  padding-right: 20px;
+  justify-content: left;
 }
 
 .team-content:nth-of-type(5) {
   background: #108cff;
+  padding-left: 20px;
+  justify-content: right;
 }
 
 .team-content p {
