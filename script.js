@@ -9,9 +9,6 @@ function reload () {
   document.getElementById('team1').innerHTML = team1Name || 'Team 1'
   document.getElementById('team2').innerHTML = team2Name || 'Team 2'
 
-  console.log(team1Roster)
-  console.log(team2Roster)
-
   // Update Team 1 roster
   const team1RosterElement = document.querySelector('.team1-roster ul')
   team1RosterElement.innerHTML = ''
@@ -123,23 +120,30 @@ function reload () {
       team2RosterElement.appendChild(listItem)
     })
   }
+
+  // Update game wins display
+  const maxGames = localStorage.getItem('maxGames')
+  updateGameWins(maxGames)
 }
 
 reload()
 
 let lastTeam1 = localStorage.getItem('team1')
 let lastTeam2 = localStorage.getItem('team2')
+let lastMaxGames = localStorage.getItem('maxGames')
 
 function checkAndUpdate () {
   const currentTeam1 = localStorage.getItem('team1')
   const currentTeam2 = localStorage.getItem('team2')
+  const currentMaxGames = localStorage.getItem('maxGames')
 
   let hasChanges = false
 
-  if (
-    currentTeam1 !== lastTeam1 ||
-    currentTeam2 !== lastTeam2
-  ) {
+  if (currentTeam1 !== lastTeam1 || currentTeam2 !== lastTeam2) {
+    hasChanges = true
+  }
+
+  if (currentMaxGames !== lastMaxGames) {
     hasChanges = true
   }
 
@@ -149,24 +153,11 @@ function checkAndUpdate () {
     // Update last known state
     lastTeam1 = currentTeam1
     lastTeam2 = currentTeam2
+    lastMaxGames = currentMaxGames
   }
 
   // Schedule the next check
   setTimeout(checkAndUpdate, 1000) // Check every second
-}
-
-function arraysAreEqual (arr1, arr2) {
-  if (arr1.length !== arr2.length) {
-    return false
-  }
-
-  for (let i = 0; i < arr1.length; i++) {
-    if (arr1[i] !== arr2[i]) {
-      return false
-    }
-  }
-
-  return true
 }
 
 checkAndUpdate() // Start the process
@@ -180,6 +171,36 @@ function updateScoreboardHUD (data) {
 
   score1.innerHTML = data.redCaptures
   score2.innerHTML = data.blueCaptures
+}
+
+function updateGameWins (maxGames) {
+  const team1Wins = document.getElementById('team1-wins')
+  const team2Wins = document.getElementById('team2-wins')
+
+  // Clear existing elements
+  team1Wins.innerHTML = ''
+  team2Wins.innerHTML = ''
+
+  for (let i = 0; i < maxGames; i++) {
+    const team1WinElement = document.createElement('div')
+    const team2WinElement = document.createElement('div')
+
+    // Add win class to indicate a win
+    if (i < parseInt(localStorage.getItem('team1Wins') || 0)) {
+      team1WinElement.classList.add('win')
+    } else {
+      team1WinElement.classList.add('unplayed')
+    }
+
+    if (i < parseInt(localStorage.getItem('team2Wins') || 0)) {
+      team2WinElement.classList.add('win')
+    } else {
+      team2WinElement.classList.add('unplayed')
+    }
+
+    team1Wins.appendChild(team1WinElement)
+    team2Wins.appendChild(team2WinElement)
+  }
 }
 
 function fetchGameData () {

@@ -20,6 +20,37 @@ team2Input.addEventListener('propertychange', function (e) {
   localStorage.setItem('team2', e.target.value)
 })
 
+const maxGamesInput = document.getElementById('max-games-input')
+
+maxGamesInput.addEventListener('input', function (e) {
+  console.log(e.target.value)
+  localStorage.setItem('maxGames', e.target.value)
+})
+
+maxGamesInput.addEventListener('propertychange', function (e) {
+  console.log(e.target.value)
+  localStorage.setItem('maxGames', e.target.value)
+})
+
+const team1Wins = document.getElementById('team1-wins-input')
+const team2Wins = document.getElementById('team2-wins-input')
+
+team1Wins.addEventListener('input', function (e) {
+  localStorage.setItem('team1Wins', e.target.value)
+})
+
+team1Wins.addEventListener('propertychange', function (e) {
+  localStorage.setItem('team1Wins', e.target.value)
+})
+
+team2Wins.addEventListener('input', function (e) {
+  localStorage.setItem('team2Wins', e.target.value)
+})
+
+team2Wins.addEventListener('propertychange', function (e) {
+  localStorage.setItem('team2Wins', e.target.value)
+})
+
 // Function to update the team selector options and team list
 function updateTeams () {
   const teamSelector1 = document.getElementById('team1-selector')
@@ -93,4 +124,9 @@ document.addEventListener('DOMContentLoaded', function () {
   const team2Input = document.getElementById('team2-selector')
   team1Input.value = localStorage.getItem('team1') || 'Team 1'
   team2Input.value = localStorage.getItem('team2') || 'Team 2'
+
+  maxGamesInput.value = localStorage.getItem('maxGames') || 3
+
+  team1Wins.value = localStorage.getItem('team1Wins') || 0
+  team2Wins.value = localStorage.getItem('team2Wins') || 0
 })

@@ -213,4 +213,24 @@ body {
   background: #108CFFDD;
 }
 
+.game-wins {
+  display: flex;
+}
 
+.win, .unplayed {
+  width: 10px;
+  height: 10px;
+  margin: 0 2px;
+}
+
+.win {
+  background-color: lime;
+}
+
+.unplayed {
+  background-color: #00000038;
+}
+
+#team2-wins {
+  margin-right: 10px;
+}
