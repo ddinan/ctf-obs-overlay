@@ -11,118 +11,6 @@ function reload () {
 
   setTeamNameFontSize()
 
-  // Update Team 1 roster
-  const team1RosterElement = document.querySelector('.team1-roster ul')
-  team1RosterElement.innerHTML = ''
-
-  if (team1Roster.length > 0) {
-    team1Roster.forEach(player => {
-      const listItem = document.createElement('li')
-      listItem.classList.add('player-item')
-      listItem.setAttribute('id', 'player-' + player)
-
-      const img = document.createElement('img')
-      img.src = `https://123dmwm.com/img/skin/3d.php?user=${player}`
-      img.width = '48'
-      img.height = '48'
-
-      const infoDiv = document.createElement('div')
-      infoDiv.classList.add('info')
-
-      const usernameP = document.createElement('p')
-      usernameP.classList.add('username', 'red')
-      usernameP.textContent = player
-
-      const statsDiv = document.createElement('div')
-      statsDiv.classList.add('stats')
-
-      const killsIcon = document.createElement('i')
-      killsIcon.classList.add('fa-solid', 'fa-skull')
-
-      const killsSpan = document.createElement('span')
-      killsSpan.style.padding = '0 12px 0 3px'
-      killsSpan.textContent = 'Kills: 0'
-
-      const deathsIcon = document.createElement('i')
-      deathsIcon.classList.add('fa-solid', 'fa-cross')
-
-      const deathsSpan = document.createElement('span')
-      deathsSpan.style.padding = '0 12px 0 3px'
-      deathsSpan.textContent = 'Deaths: 0'
-
-      const capturesIcon = document.createElement('i')
-      capturesIcon.classList.add('fa-solid', 'fa-flag')
-
-      const capturesSpan = document.createElement('span')
-      capturesSpan.style.padding = '0 12px 0 3px'
-      capturesSpan.textContent = 'Captures: 0'
-
-      statsDiv.append(killsIcon, killsSpan, deathsIcon, deathsSpan, capturesIcon, capturesSpan)
-
-      infoDiv.append(usernameP, statsDiv)
-
-      listItem.append(img, infoDiv)
-
-      team1RosterElement.appendChild(listItem)
-    })
-  }
-
-  // Update Team 2 roster
-  const team2RosterElement = document.querySelector('.team2-roster ul')
-  team2RosterElement.innerHTML = ''
-
-  if (team2Roster.length > 0) {
-    team2Roster.forEach(player => {
-      const listItem = document.createElement('li')
-      listItem.classList.add('player-item')
-      listItem.setAttribute('id', 'player-' + player)
-
-      const infoDiv = document.createElement('div')
-      infoDiv.classList.add('info')
-
-      const usernameP = document.createElement('p')
-      usernameP.classList.add('username', 'blue')
-      usernameP.textContent = player
-
-      const statsDiv = document.createElement('div')
-      statsDiv.classList.add('stats')
-
-      const killsIcon = document.createElement('i')
-      killsIcon.classList.add('fa-solid', 'fa-skull')
-
-      const killsSpan = document.createElement('span')
-      killsSpan.style.padding = '0 12px 0 3px'
-      killsSpan.textContent = 'Kills: 0'
-
-      const deathsIcon = document.createElement('i')
-      deathsIcon.classList.add('fa-solid', 'fa-cross')
-
-      const deathsSpan = document.createElement('span')
-      deathsSpan.style.padding = '0 12px 0 3px'
-      deathsSpan.textContent = 'Deaths: 0'
-
-      const capturesIcon = document.createElement('i')
-      capturesIcon.classList.add('fa-solid', 'fa-flag')
-
-      const capturesSpan = document.createElement('span')
-      capturesSpan.style.padding = '0 12px 0 3px'
-      capturesSpan.textContent = 'Captures: 0'
-
-      statsDiv.append(killsIcon, killsSpan, deathsIcon, deathsSpan, capturesIcon, capturesSpan)
-
-      infoDiv.append(usernameP, statsDiv)
-
-      const img = document.createElement('img')
-      img.src = `https://123dmwm.com/img/skin/3d.php?user=${player}`
-      img.width = '48'
-      img.height = '48'
-
-      listItem.append(infoDiv, img)
-
-      team2RosterElement.appendChild(listItem)
-    })
-  }
-
   // Update game wins display
   const maxGames = localStorage.getItem('maxGames')
   updateGameWins(maxGames)
@@ -240,40 +128,79 @@ function fetchGameData () {
 }
 
 function updatePlayerHUD (player, data) {
-  const element = document.getElementById('player-' + player)
+  let element = document.getElementById('player-' + player)
 
-  const statsDiv = document.createElement('div')
-  statsDiv.classList.add('stats')
+  if (!element) {
+    console.log('s')
+    element = document.createElement('div')
+    element.id = 'player-' + player
+    element.classList.add('player-item')
 
-  const killsIcon = document.createElement('i')
-  killsIcon.classList.add('fa-solid', 'fa-skull')
+    // Create img element
+    const img = document.createElement('img')
+    img.src = `https://123dmwm.com/img/skin/3d.php?user=${player}`
+    img.width = '48'
+    img.height = '48'
 
-  const killsSpan = document.createElement('span')
-  killsSpan.style.padding = '0 12px 0 3px'
-  killsSpan.textContent = `Kills: ${data.kills}`
+    // Create div.info
+    const infoDiv = document.createElement('div')
+    infoDiv.classList.add('info')
 
-  const deathsIcon = document.createElement('i')
-  deathsIcon.classList.add('fa-solid', 'fa-cross')
+    // Create p.username
+    const usernameP = document.createElement('p')
 
-  const deathsSpan = document.createElement('span')
-  deathsSpan.style.padding = '0 12px 0 3px'
-  deathsSpan.textContent = `Deaths: ${data.deaths}`
+    if (team1Roster.includes(player)) {
+      usernameP.classList.add('username', 'red')
+    } else if (team2Roster.includes(player)) {
+      usernameP.classList.add('username', 'blue')
+    }
 
-  const capturesIcon = document.createElement('i')
-  capturesIcon.classList.add('fa-solid', 'fa-flag')
+    usernameP.textContent = player
 
-  const capturesSpan = document.createElement('span')
-  capturesSpan.style.padding = '0 12px 0 3px'
-  capturesSpan.textContent = `Captures: ${data.captures}`
+    // Create div.stats
+    const statsDiv = document.createElement('div')
+    statsDiv.classList.add('stats')
 
-  statsDiv.append(killsIcon, killsSpan, deathsIcon, deathsSpan, capturesIcon, capturesSpan)
+    // Create spans for kills, deaths, and captures with initial value '0'
+    const killsIcon = document.createElement('i')
+    killsIcon.classList.add('fa-solid', 'fa-skull')
 
-  // Check if stats already exist
-  const existingStatsDiv = element.querySelector('.stats')
-  if (existingStatsDiv) {
-    existingStatsDiv.innerHTML = statsDiv.innerHTML // Update existing stats
-  } else {
-    element.appendChild(statsDiv) // Add stats if they don't exist
+    const killsSpan = document.createElement('span')
+    killsSpan.style.padding = '0 12px 0 3px'
+    killsSpan.textContent = 'Kills: 0'
+
+    const deathsIcon = document.createElement('i')
+    deathsIcon.classList.add('fa-solid', 'fa-cross')
+
+    const deathsSpan = document.createElement('span')
+    deathsSpan.style.padding = '0 12px 0 3px'
+    deathsSpan.textContent = 'Deaths: 0'
+
+    const capturesIcon = document.createElement('i')
+    capturesIcon.classList.add('fa-solid', 'fa-flag')
+
+    const capturesSpan = document.createElement('span')
+    capturesSpan.style.padding = '0 12px 0 3px'
+    capturesSpan.textContent = 'Captures: 0'
+
+    statsDiv.append(killsIcon, killsSpan, deathsIcon, deathsSpan, capturesIcon, capturesSpan)
+    infoDiv.append(usernameP, statsDiv)
+    element.append(img, infoDiv)
+
+    // Append the created element to the appropriate roster
+    if (team1Roster.includes(player)) {
+      document.querySelector('.team1-roster ul').appendChild(element)
+    } else if (team2Roster.includes(player)) {
+      document.querySelector('.team2-roster ul').appendChild(element)
+    }
+  }
+
+  // Update stats if they exist
+  const statsDiv = element.querySelector('.stats')
+  if (statsDiv) {
+    statsDiv.querySelector('.fa-skull + span').textContent = 'Kills: ' + data.kills
+    statsDiv.querySelector('.fa-cross + span').textContent = 'Deaths: ' + data.deaths
+    statsDiv.querySelector('.fa-flag + span').textContent = 'Captures: ' + data.captures
   }
 }
 
@@ -303,8 +230,39 @@ function fetchPlayerData () {
   })
 }
 
+let gameDataIntervalStarted = false
+
 // Fetch game data every second
-setInterval(fetchGameData, 1000)
+setInterval(() => {
+  fetchGameData()
+  gameDataIntervalStarted = true // Set the flag once the interval starts
+}, 1000)
 
 // Fetch player data every 5 seconds
 setInterval(fetchPlayerData, 5000)
+
+function setupInitialHUDs () {
+  const allPlayers = [...team1Roster, ...team2Roster]
+
+  allPlayers.forEach(player => {
+    const offlineData = {
+      kills: 0,
+      deaths: 0,
+      captures: 0
+    }
+
+    updatePlayerHUD(player, offlineData)
+  })
+}
+
+// Check if the game data interval has started, and then set up initial HUDs
+function checkAndSetupInitialHUDs () {
+  if (gameDataIntervalStarted) {
+    setupInitialHUDs()
+  } else {
+    setTimeout(checkAndSetupInitialHUDs, 100) // Check again in 100 milliseconds
+  }
+}
+
+// Start checking and setting up HUDs
+checkAndSetupInitialHUDs()
