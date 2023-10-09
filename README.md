@@ -16,6 +16,11 @@ All statistics are synchronized with the CTF server.
 
 - **Kill Feed:** Get instant updates on player kills, flag grabs, and captures.
 - **Custom Team Profile Pictures:** Add a personalized touch to team identities.
+- **Map ban screen** Configure and select/deselect maps to visualize team map bans.
+- **'Starting soon' screen** Let your viewers know that the stream is starting soon.
+- **Intermission screen** Let your viewers know that the stream will resume soon.
+- **Bracket screen** A direct Challonge integration to show the bracket and upcoming matches.
+- **Team list** Show a list of teams and their rosters for team introduction.
 
 Stay tuned for these exciting upcoming features!
 
