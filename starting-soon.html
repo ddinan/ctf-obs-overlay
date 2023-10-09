@@ -53,12 +53,17 @@
             margin-top: 15px;
         }
 
-        .shield {
+        .center {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 50%;
+        }
+
+        .logo {
             animation: bounce 2s infinite;
-            width: 100px;
-            position: absolute;
-            left: 10%;
-            bottom: 10%;
+            width: 320px;
+            transform: translate(-50%, -50%); /* Add this line */
             filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.7));
         }
 
@@ -73,7 +78,7 @@
     </style>
 </head>
 <body>
-    <img src="shield.png" alt="Shield Image" class="shield">
+    <img src="./img/logo.png" class="logo center">
     <span>STARTING SOON</span>
     <p>We'll be live shortly!</p>
 </body>
