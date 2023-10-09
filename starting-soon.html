@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Starting Soon</title>
+    <style>
+        @font-face {
+            font-family: 'Mona Sans';
+            src: url('./fonts/Mona-Sans.otf');
+        }
+
+        body {
+            background: url('./img/background.jpg') !important;
+            background-size: cover !important;
+            color: #ffffff;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: bold;
+            text-transform: uppercase;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        span {
+            font-family: 'Mona Sans';
+            font-size: 128px;
+            font-weight: bolder;
+            letter-spacing: 0;
+            display: block;
+            margin: 0 auto;
+            /*text-shadow: 0 0 80px rgba(255, 255, 255, .5);*/
+            background: url('./img/text-wrap.png') repeat-y;
+            background-size: cover;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            -webkit-animation: aitf 80s linear infinite;
+            -webkit-transform: translate3d(0,0,0);
+            -webkit-backface-visibility: hidden;
+        }
+
+        @-webkit-keyframes aitf {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+
+        p {
+            font-size: 5em;
+            margin-top: 15px;
+        }
+
+        .shield {
+            animation: bounce 2s infinite;
+            width: 100px;
+            position: absolute;
+            left: 10%;
+            bottom: 10%;
+            filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.7));
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <img src="shield.png" alt="Shield Image" class="shield">
+    <span>STARTING SOON</span>
+    <p>We'll be live shortly!</p>
+</body>
+</html>
