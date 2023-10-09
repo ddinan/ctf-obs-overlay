@@ -51,6 +51,16 @@ team2Wins.addEventListener('propertychange', function (e) {
   localStorage.setItem('team2Wins', e.target.value)
 })
 
+const bracketInput = document.getElementById('bracket-input')
+
+bracketInput.addEventListener('input', function (e) {
+  localStorage.setItem('bracketURL', e.target.value)
+})
+
+bracketInput.addEventListener('propertychange', function (e) {
+  localStorage.setItem('bracketURL', e.target.value)
+})
+
 // Function to update the team selector options and team list
 function updateTeams () {
   const teamSelector1 = document.getElementById('team1-selector')

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Starting Soon</title>
+    <style>
+        @font-face {
+            font-family: 'Mona Sans';
+            src: url('./fonts/Mona-Sans.otf');
+        }
+
+        body {
+            background: url('./img/background.jpg') !important;
+            background-size: cover !important;
+            color: #ffffff;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: bold;
+            text-transform: uppercase;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        span {
+            font-family: 'Mona Sans';
+            font-size: 96px;
+            font-weight: bolder;
+            letter-spacing: 0;
+            display: block;
+            margin: 0 auto;
+            padding-bottom: 20px;
+            /*text-shadow: 0 0 80px rgba(255, 255, 255, .5);*/
+            background: url('./img/text-wrap.png') repeat-y;
+            background-size: cover;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            -webkit-animation: aitf 80s linear infinite;
+            -webkit-transform: translate3d(0,0,0);
+            -webkit-backface-visibility: hidden;
+        }
+
+        @-webkit-keyframes aitf {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+
+        .center {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 50%;
+        }
+
+        .logo {
+            animation: bounce 2s infinite;
+            width: 160px;
+            transform: translateY(0);
+            filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.7));
+        }
+
+        .bracket {
+            width: 75%;
+            height: 500px;
+            background-color: #272A33;
+        }
+    </style>
+</head>
+<body>
+    <img src="./img/logo.png" class="logo center">
+    <span>BRACKET</span>
+    <div class="bracket center" id="bracket"></div>
+
+    <script>
+        // Check if bracketURL is set in localStorage
+        const bracketURL = localStorage.getItem('bracketURL');
+
+        console.log(bracketURL)
+
+        if (bracketURL) {
+            const iframe = document.createElement('iframe');
+            iframe.src = bracketURL + '/module';
+            iframe.width = '100%';
+            iframe.height = '500';
+            iframe.frameBorder = '0';
+            iframe.scrolling = 'auto';
+            iframe.allowtransparency = 'true';
+            
+            document.getElementById('bracket').appendChild(iframe);
+        }
+    </script>
+</body>
+</html>
