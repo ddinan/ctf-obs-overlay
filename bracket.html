@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Starting Soon</title>
+    <title>Bracket</title>
     <style>
         @font-face {
             font-family: 'Mona Sans';
@@ -57,7 +57,6 @@
         }
 
         .logo {
-            animation: bounce 2s infinite;
             width: 160px;
             transform: translateY(0);
             filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.7));
@@ -78,8 +77,6 @@
     <script>
         // Check if bracketURL is set in localStorage
         const bracketURL = localStorage.getItem('bracketURL');
-
-        console.log(bracketURL)
 
         if (bracketURL) {
             const iframe = document.createElement('iframe');

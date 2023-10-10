@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Map Bans</title>
+    <style>
+        @font-face {
+            font-family: 'Mona Sans';
+            src: url('./fonts/Mona-Sans.otf');
+        }
+
+        body {
+            background: url('./img/background.jpg') !important;
+            background-size: cover !important;
+            color: #ffffff;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: bold;
+            text-transform: uppercase;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        span {
+            font-family: 'Mona Sans';
+            font-size: 96px;
+            font-weight: bolder;
+            letter-spacing: 0;
+            display: block;
+            margin: 0 auto;
+            padding-bottom: 20px;
+            /*text-shadow: 0 0 80px rgba(255, 255, 255, .5);*/
+            background: url('./img/text-wrap.png') repeat-y;
+            background-size: cover;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            -webkit-animation: aitf 80s linear infinite;
+            -webkit-transform: translate3d(0,0,0);
+            -webkit-backface-visibility: hidden;
+        }
+
+        @-webkit-keyframes aitf {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+
+        .center {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 50%;
+        }
+
+        .logo {
+            width: 160px;
+            transform: translateY(0);
+            filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.7));
+        }
+
+        .map-bans {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            height: 500px;
+        }
+
+        .map {
+            text-align: center;
+            margin: 20px;
+            max-width: 200px;
+        }
+
+        .map-bans img {
+            width: 200px;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            transition: filter 0.5s;
+        }
+
+        button.ban {
+            padding: 8px 16px;
+            background-color: #e74c3c;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            border-radius: 4px;
+            margin-top: 10px;
+            font-size: 16px;
+        }
+
+        button.ban:hover {
+            background-color: #c0392b;
+        }
+
+        button.ban:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <img src="./img/logo.png" class="logo center">
+    <span>MAP BANS</span>
+
+    <div class="map-bans">
+        <div class="map">
+            <h3>Nuke</h3>
+            <img src="https://media.discordapp.net/attachments/1037199938561507419/1161122789621760121/534px-Nuke_csgo.png?ex=653726dd&is=6524b1dd&hm=3a222a2cbe0de4e5529bb5608389a6c52737c6c8a1392d1f02eb3f1c0485915b&=">
+            <button class="ban">Ban</button>
+        </div>
+
+        <div class="map">
+            <h3>Mirage</h3>
+            <img src="https://media.discordapp.net/attachments/1037199938561507419/1161122789978280097/534px-Csgo_mirage.png?ex=653726dd&is=6524b1dd&hm=d723249503f2bd711d1a7588b19206e8615cf45650d9d6bd55c6c0f6edbe6ce1&=">
+            <button class="ban">Ban</button>
+        </div>
+
+        <div class="map">
+            <h3>Anubis</h3>
+            <img src="https://media.discordapp.net/attachments/1037199938561507419/1161122790867468418/534px-Anubis_csgo.png?ex=653726dd&is=6524b1dd&hm=8927d4b49ebb950cec6a9ec721139a0d691da1397d07da702d0b6972ff8bf2cb&=">
+            <button class="ban">Ban</button>
+        </div>
+
+        <div class="map">
+            <h3>Overpass</h3>
+            <img src="https://media.discordapp.net/attachments/1037199938561507419/1161122790271877170/534px-Csgo_overpass.png?ex=653726dd&is=6524b1dd&hm=b82e8672754fc08ae651ff779d132b71e0cc38aa9f4decd53a1d2078ff184e20&=">
+            <button class="ban">Ban</button>
+        </div>
+
+        <div class="map">
+            <h3>Vertigo</h3>
+            <img src="https://media.discordapp.net/attachments/1037199938561507419/1161122790565482547/534px-Csgo_de_vertigo_new.png?ex=653726dd&is=6524b1dd&hm=61f44d5cfbaa294fec0f8ba384cc91aaad8dc4c0be71ab700381559212e82655&=">
+            <button class="ban">Ban</button>
+        </div>
+    </div>
+</body>
+</html>
