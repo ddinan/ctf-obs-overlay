@@ -131,16 +131,23 @@ function updatePlayerHUD (player, data) {
   let element = document.getElementById('player-' + player)
 
   if (!element) {
-    console.log('s')
-    element = document.createElement('div')
+    element = document.createElement('li')
     element.id = 'player-' + player
-    element.classList.add('player-item')
+    element.classList.add('player-item', 'border-gradient')
+
+    if (team1Roster.includes(player)) {
+      element.classList.add('red', 'border-gradient-red')
+    } else if (team2Roster.includes(player)) {
+      element.classList.add('blue', 'border-gradient-blue')
+    }
 
     // Create img element
     const img = document.createElement('img')
     img.src = `https://123dmwm.com/img/skin/3d.php?user=${player}`
     img.width = '48'
     img.height = '48'
+    if (team1Roster.includes(player)) img.classList.add('left')
+    else img.classList.add('right')
 
     // Create div.info
     const infoDiv = document.createElement('div')
@@ -148,13 +155,7 @@ function updatePlayerHUD (player, data) {
 
     // Create p.username
     const usernameP = document.createElement('p')
-
-    if (team1Roster.includes(player)) {
-      usernameP.classList.add('username', 'red')
-    } else if (team2Roster.includes(player)) {
-      usernameP.classList.add('username', 'blue')
-    }
-
+    usernameP.classList.add('username')
     usernameP.textContent = player
 
     // Create div.stats
@@ -163,29 +164,30 @@ function updatePlayerHUD (player, data) {
 
     // Create spans for kills, deaths, and captures with initial value '0'
     const killsIcon = document.createElement('i')
-    killsIcon.classList.add('fa-solid', 'fa-skull')
+    killsIcon.classList.add('fa-solid', 'fa-skull', 'stats-padding')
 
     const killsSpan = document.createElement('span')
     killsSpan.style.padding = '0 12px 0 3px'
-    killsSpan.textContent = 'Kills: 0'
+    killsSpan.textContent = '0'
 
     const deathsIcon = document.createElement('i')
-    deathsIcon.classList.add('fa-solid', 'fa-cross')
+    deathsIcon.classList.add('fa-solid', 'fa-cross', 'stats-padding')
 
     const deathsSpan = document.createElement('span')
     deathsSpan.style.padding = '0 12px 0 3px'
-    deathsSpan.textContent = 'Deaths: 0'
+    deathsSpan.textContent = '0'
 
     const capturesIcon = document.createElement('i')
-    capturesIcon.classList.add('fa-solid', 'fa-flag')
+    capturesIcon.classList.add('fa-solid', 'fa-flag', 'stats-padding')
 
     const capturesSpan = document.createElement('span')
     capturesSpan.style.padding = '0 12px 0 3px'
-    capturesSpan.textContent = 'Captures: 0'
+    capturesSpan.textContent = '0'
 
     statsDiv.append(killsIcon, killsSpan, deathsIcon, deathsSpan, capturesIcon, capturesSpan)
     infoDiv.append(usernameP, statsDiv)
-    element.append(img, infoDiv)
+    if (team1Roster.includes(player)) element.append(img, infoDiv)
+    else element.append(infoDiv, img)
 
     // Append the created element to the appropriate roster
     if (team1Roster.includes(player)) {
@@ -198,9 +200,9 @@ function updatePlayerHUD (player, data) {
   // Update stats if they exist
   const statsDiv = element.querySelector('.stats')
   if (statsDiv) {
-    statsDiv.querySelector('.fa-skull + span').textContent = 'Kills: ' + data.kills
-    statsDiv.querySelector('.fa-cross + span').textContent = 'Deaths: ' + data.deaths
-    statsDiv.querySelector('.fa-flag + span').textContent = 'Captures: ' + data.captures
+    statsDiv.querySelector('.fa-skull + span').textContent = data.kills
+    statsDiv.querySelector('.fa-cross + span').textContent = data.deaths
+    statsDiv.querySelector('.fa-flag + span').textContent = data.captures
   }
 }
 

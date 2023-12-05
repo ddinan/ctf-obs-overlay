@@ -1,301 +1,334 @@
 @font-face {
-  font-family: 'Mona Sans';
-  src: url('/fonts/Mona-Sans.otf');
+	font-family: 'Mona Sans';
+	src: url('/fonts/Mona-Sans.otf');
 }
 
 * {
-  margin: 0;
+	margin: 0;
 }
 
 body {
-  font-family: 'Montserrat', sans-serif;
-  /*background-color: transparent;*/
+	/*background: url('https://i.imgur.com/Fi6Hqof.png');*/
+	font-family: 'Montserrat', sans-serif;
+	/*background-color: transparent;*/
 
 }
 
 .container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 100vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	height: 100vh;
 }
 
 .scoreboard {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-  background: #000D30;
-  font-weight: bold;
-  text-transform: uppercase;
-  font-size: 24px;
-  color: #ffffff;
+	display: flex;
+	justify-content: center;
+	margin-top: 20px;
+	background: #090916;
+	font-weight: bold;
+	text-transform: uppercase;
+	font-size: 24px;
+	color: #ffffff;
 }
 
-.team-content, .score-content, .event-content {
-  display: flex;
-  align-items: center;
+.team-content,
+.score-content,
+.event-content {
+	display: flex;
+	align-items: center;
 }
 
 .team-content {
-  font-family: 'Mona Sans';
-  width: 300px;
-  max-width: 300px;
+	font-family: 'Mona Sans';
+	width: 300px;
+	max-width: 300px;
 }
 
 .team-content:nth-of-type(1) {
-  /*background: #e12033;*/
-  background: linear-gradient(45deg, #e90d2a40, #e90d2a);
-  padding-right: 20px;
-  justify-content: left;
+	/*background: #e12033;*/
+	background: linear-gradient(45deg, #e90d2a40, #e90d2a);
+	padding-right: 20px;
+	justify-content: left;
 }
 
 .team-content:nth-of-type(5) {
-  /*background: #108cff;*/
-  background: linear-gradient(45deg, #108fff, #108fff40);
-  padding-left: 20px;
-  justify-content: right;
+	/*background: #108cff;*/
+	background: linear-gradient(45deg, #108fff, #108fff40);
+	padding-left: 20px;
+	justify-content: right;
 }
 
 .team-content p {
-  margin-right: 10px;
+	margin-right: 10px;
 }
 
 .score-content {
-  background-color: transparent;
-  width: 20px;
-  font-size: 48px;
-  padding: 0px 25px;
+	background-color: transparent;
+	width: 34px;
+	font-size: 48px;
+	padding: 0px 25px;
 }
 
 /* Unused */
 .scores-extra {
-  display: flex;
-  justify-content: space-between;
-  width: 200px;
-  background: red;
+	display: flex;
+	justify-content: space-between;
+	width: 200px;
+	background: red;
 }
 
 .timer {
-  padding: 0px 50px;
-  font-size: 32px;
-  margin-top: 12.5px;
+	padding: 0px 50px;
+  width: 80px;
+	font-size: 32px;
+	margin-top: 12.5px;
 }
 
 .team-input {
-  display: flex;
-  justify-content: space-between;
-  width: 400px;
-  margin-bottom: 20px;
+	display: flex;
+	justify-content: space-between;
+	width: 400px;
+	margin-bottom: 20px;
 }
 
 .team-input input[type="text"] {
-  width: 180px;
-  padding: 5px;
-  font-size: 18px;
+	width: 180px;
+	padding: 5px;
+	font-size: 18px;
 }
 
 .score-input {
-  display: flex;
-  justify-content: space-between;
-  width: 200px;
+	display: flex;
+	justify-content: space-between;
+	width: 200px;
 }
 
 .score-input input[type="number"] {
-  width: 80px;
-  padding: 5px;
-  font-size: 18px;
+	width: 80px;
+	padding: 5px;
+	font-size: 18px;
 }
 
 .button-container {
-  display: flex;
-  justify-content: center;
+	display: flex;
+	justify-content: center;
 }
 
-.button, .button-small {
-  color: #ffffff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
+.button,
+.button-small {
+	color: #ffffff;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
 }
 
 .button {
-  background-color: #9147ff;
-  padding: 10px 20px;
-  font-size: 16px;
-  margin: 0 10px;
+	background-color: #9147ff;
+	padding: 10px 20px;
+	font-size: 16px;
+	margin: 0 10px;
 }
 
 .button:hover {
-  background-color: #691fb3;
+	background-color: #691fb3;
 }
 
 .button-small {
-  background-color: #DC3545;
-  padding: 5px;
-  font-size: 12px;
-  margin: 0 10px;
+	background-color: #DC3545;
+	padding: 5px;
+	font-size: 12px;
+	margin: 0 10px;
 }
 
 .button-small:hover {
-  background-color: #a0222c;
+	background-color: #a0222c;
 }
 
-.team1-roster, .team2-roster {
-  position: absolute;
-  bottom: 50%;
-  width: 400px;
-  padding: 15px;
-  text-align: center; /* Center the roster content */
-}
+.team1-roster,
+.team2-roster {
+	position: absolute;
+	bottom: 50%;
+	width: 240px;
+	padding: 15px;
 
-.team1-roster {
-  left: 10px;
 }
 
 .team2-roster {
-  right: 10px;
+
+	text-align: right;
 }
 
-.team1-roster h2, .team2-roster h2 {
-  font-size: 16px;
-  margin-bottom: 5px;
+.team1-roster {
+	left: 10px;
 }
 
-.team1-roster ul, .team2-roster ul {
-  list-style-type: none;
-  padding: 0;
+.team2-roster {
+	right: 10px;
 }
 
-.team1-roster li, .team2-roster li {
-  font-size: 14px;
-  margin-bottom: 5px;
+.team1-roster h2,
+.team2-roster h2 {
+	font-size: 16px;
+	margin-bottom: 5px;
+}
+
+.team1-roster ul,
+.team2-roster ul {
+	list-style-type: none;
+	padding: 0;
+}
+
+.team1-roster li,
+.team2-roster li {
+	font-size: 14px;
+	margin-bottom: 5px;
 }
 
 .player-item {
-  list-style-type: none;
-  display: flex;
-  align-items: center;
+	list-style-type: none;
+	display: flex;
+	align-items: center;
 }
 
 .player-item img {
-  width: 48px;
-  height: 48px;
+	width: 48px;
+	height: 48px;
+	padding: 10px;
 }
 
-.team1-roster .player-item img {
-  margin-right: 10px;
+.left {
+  padding-right: 15px !important;
 }
 
-.team2-roster .player-item img {
-  margin-left: 10px;
+.right {
+  padding-left: 15px !important;
 }
 
 .info {
-  display: flex;
-  flex-direction: column;
-  color: white;
+	display: flex;
+	flex-direction: column;
+	color: white;
+  width: 100%;
 }
 
 .username {
-  margin: 0;
-  padding: 5px 20px;
-  font-size: 16px;
-  font-weight: bold;
+	margin: 0;
+	padding: 5px 0px;
+	font-size: 16px;
+	font-weight: bold;
 }
 
 .stats {
-  margin: 0;
-  padding: 10px 20px;
-  background: #060c23DD;
-  font-size: 14px;
+	margin: 0;
+	font-size: 14px;
+}
+
+.border-gradient {
+	border: 10px solid;
+	border-image-slice: 1;
+	border-width: 5px;
+	border-left: 0;
+	border-right: 0;
+	border-bottom: 0;
+}
+
+.border-gradient-red {
+	border-image-source: linear-gradient(to left, #e90d2a40, #e90d2a);
+}
+
+.border-gradient-blue {
+	border-image-source: linear-gradient(to right, #108fff, #108fff40);
 }
 
 .red {
-  background: #DC3545DD;
+	background: rgba(0, 0, 0, 0.7);
 }
 
 .blue {
-  background: #108CFFDD;
+	background: rgba(0, 0, 0, 0.7);
 }
 
 .game-wins {
-  display: flex;
+	display: flex;
 }
 
-.win, .unplayed {
-  width: 10px;
-  height: 10px;
-  margin: 0 2px;
+.win,
+.unplayed {
+	width: 10px;
+	height: 10px;
+	margin: 0 2px;
 }
 
 .win {
-  background-color: lime;
+	background-color: lime;
 }
 
 .unplayed {
-  background-color: #00000050;
+	background-color: #00000050;
 }
 
 #team2-wins {
-  margin-right: 10px;
+	margin-right: 10px;
 }
 
 .underlay {
-  position: relative;
-  text-align: center;
-  font-size: 16px;
-  font-weight: bold;
-  color: white;
-  padding: 10px 40px;
+	position: relative;
+	text-align: center;
+	font-size: 16px;
+	font-weight: bold;
+	color: white;
+	padding: 10px 40px;
 }
 
-.underlay::before, .underlay::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  width: 50%;
-  height: 100%;
-  background-color: #1a223d;
-  z-index: -1;
+.underlay::before,
+.underlay::after {
+	content: "";
+	position: absolute;
+	top: 0;
+	width: 50%;
+	height: 100%;
+	background-color: #1a223d;
+	z-index: -1;
 }
 
 .underlay::before {
-  left: 0;
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 30% 100%);
+	left: 0;
+	clip-path: polygon(0 0, 100% 0, 100% 100%, 30% 100%);
 }
 
 .underlay::after {
-  right: 0;
-  clip-path: polygon(100% 0, 0 0, 0% 100%, 70% 100%);
+	right: 0;
+	clip-path: polygon(100% 0, 0 0, 0% 100%, 70% 100%);
 }
 
 .kill-feed {
-  width: 250px;
-  max-width: 250px;
-  position: absolute;
-  top: 20px;
-  right: 0;
-  color: white;
+	width: 250px;
+	max-width: 250px;
+	position: absolute;
+	top: 20px;
+	right: 0;
+	color: white;
 }
 
 .kill-feed-item {
-  text-align: center;
-  padding: 10px;
-  margin-bottom: 5px;
-  font-size: 16px;
+	text-align: center;
+	padding: 10px;
+	margin-bottom: 5px;
+	font-size: 16px;
 }
 
-.kill-feed p { 
-  font-family: sans-serif; 
-  font-weight: bold;
-  color: #fff;
-  background: #000D30;
+.kill-feed p {
+	font-family: sans-serif;
+	font-weight: bold;
+	color: #fff;
+	background: #090916;
 }
 
 .kill-feed-item .killer {
-  font-weight: bold;
+	font-weight: bold;
 }
 
 .kill-feed-item .icon {
-  margin: 0 5px;
+	margin: 0 5px;
 }

@@ -74,7 +74,7 @@ app.whenReady().then(() => {
       })
     }
     
-    else if (req.url === '/images/background.jpg') { // Add this block for handling background.jpg
+    else if (req.url === '/images/background.jpg') {
       fs.readFile(__dirname + '/images/background.jpg', (err, data) => {
         if (err) {
           res.writeHead(404)
@@ -87,7 +87,7 @@ app.whenReady().then(() => {
       })
     }
     
-    else if (req.url === '/images/text-wrap.png') { // Add this block for handling text-wrap.png
+    else if (req.url === '/images/text-wrap.png') {
       fs.readFile(__dirname + '/images/text-wrap.png', (err, data) => {
         if (err) {
           res.writeHead(404)
@@ -100,7 +100,7 @@ app.whenReady().then(() => {
       })
     }
     
-    else if (req.url === '/images/logo.png') { // Add this block for handling logo.png
+    else if (req.url === '/images/logo.png') {
       fs.readFile(__dirname + '/images/logo.png', (err, data) => {
         if (err) {
           res.writeHead(404)
@@ -164,8 +164,7 @@ app.whenReady().then(() => {
         res.end(data)
       })
     }
-  })
-  
+  }) 
 
   server.listen(3000, () => {
     console.log('Server running at http://localhost:3000')
