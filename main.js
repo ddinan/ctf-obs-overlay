@@ -112,6 +112,71 @@ app.whenReady().then(() => {
         res.end(data)
       })
     }
+
+    else if (req.url === '/images/maps/deathmatch.png') {
+      fs.readFile(__dirname + '/images/maps/deathmatch.png', (err, data) => {
+        if (err) {
+          res.writeHead(404)
+          res.end(JSON.stringify(err))
+          return
+        }
+  
+        res.writeHead(200, { 'Content-Type': 'image/png' })
+        res.end(data)
+      })
+    }
+
+    else if (req.url === '/images/maps/industries.png') {
+      fs.readFile(__dirname + '/images/maps/industries.png', (err, data) => {
+        if (err) {
+          res.writeHead(404)
+          res.end(JSON.stringify(err))
+          return
+        }
+  
+        res.writeHead(200, { 'Content-Type': 'image/png' })
+        res.end(data)
+      })
+    }
+
+    else if (req.url === '/images/maps/museum.png') {
+      fs.readFile(__dirname + '/images/maps/museum.png', (err, data) => {
+        if (err) {
+          res.writeHead(404)
+          res.end(JSON.stringify(err))
+          return
+        }
+  
+        res.writeHead(200, { 'Content-Type': 'image/png' })
+        res.end(data)
+      })
+    }
+
+    else if (req.url === '/images/maps/outpost.png') {
+      fs.readFile(__dirname + '/images/maps/outpost.png', (err, data) => {
+        if (err) {
+          res.writeHead(404)
+          res.end(JSON.stringify(err))
+          return
+        }
+  
+        res.writeHead(200, { 'Content-Type': 'image/png' })
+        res.end(data)
+      })
+    }
+
+    else if (req.url === '/images/maps/torvus.png') {
+      fs.readFile(__dirname + '/images/maps/torvus.png', (err, data) => {
+        if (err) {
+          res.writeHead(404)
+          res.end(JSON.stringify(err))
+          return
+        }
+  
+        res.writeHead(200, { 'Content-Type': 'image/png' })
+        res.end(data)
+      })
+    }
     
     else if (req.url === '/map-bans.html') {
       fs.readFile(__dirname + '/map-bans.html', (err, data) => {
