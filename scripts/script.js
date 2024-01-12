@@ -109,6 +109,12 @@ function updateGameWins (maxGames) {
     team1Wins.appendChild(team1WinElement)
     team2Wins.appendChild(team2WinElement)
   }
+
+  const gameInfo = document.getElementById("game-info");
+
+  // Update the content of the existing <p> element
+  const gameNumber = (parseInt(localStorage.getItem('team1Wins')) || 0) + (parseInt(localStorage.getItem('team2Wins')) || 0) + 1
+  gameInfo.innerHTML = "Game " + gameNumber + " <span style='color: gray;'>|</span> <span style='color: white;'>Best of " + (maxGames || 1) + "</span>"
 }
 
 function fetchGameData () {
