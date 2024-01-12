@@ -22,6 +22,12 @@ function setTeamNameFontSize () {
   const team1NameElement = document.getElementById('team1')
   const team2NameElement = document.getElementById('team2')
 
+  const team1LogoElement = document.getElementById('team1-logo')
+  const team2LogoElement = document.getElementById('team2-logo')
+
+  team1LogoElement.src = localStorage.getItem('team1Logo') || './images/placeholder-logo.png'
+  team2LogoElement.src = localStorage.getItem('team2Logo') || './images/placeholder-logo.png'
+
   const maxFontSize = 24 // Maximum font size you want to allow
   const maxNameLength = 10 // Maximum characters you want to display without resizing
 
@@ -226,7 +232,6 @@ function fetchPlayerData () {
   const allPlayers = [...team1Roster, ...team2Roster]
 
   allPlayers.forEach(player => {
-    console.log(player)
     fetch(`http://localhost:22000/api/player?p=${player}`)
       .then(response => response.json())
       .then(data => {

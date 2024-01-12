@@ -6,6 +6,9 @@ const team2Input = document.getElementById('team2-selector')
 
 team1Input.addEventListener('input', function (e) {
   localStorage.setItem('team1', e.target.value)
+
+  const logo = localStorage.getItem(e.target.value + '_logo') || './images/placeholder-logo.png'
+  localStorage.setItem('team1Logo', logo)
 })
 
 team1Input.addEventListener('propertychange', function (e) {
@@ -14,6 +17,9 @@ team1Input.addEventListener('propertychange', function (e) {
 
 team2Input.addEventListener('input', function (e) {
   localStorage.setItem('team2', e.target.value)
+
+  const logo = localStorage.getItem(e.target.value + '_logo') || './images/placeholder-logo.png'
+  localStorage.setItem('team2Logo', logo)
 })
 
 team2Input.addEventListener('propertychange', function (e) {
@@ -23,12 +29,10 @@ team2Input.addEventListener('propertychange', function (e) {
 const maxGamesInput = document.getElementById('max-games-input')
 
 maxGamesInput.addEventListener('input', function (e) {
-  console.log(e.target.value)
   localStorage.setItem('maxGames', e.target.value)
 })
 
 maxGamesInput.addEventListener('propertychange', function (e) {
-  console.log(e.target.value)
   localStorage.setItem('maxGames', e.target.value)
 })
 
@@ -88,13 +92,28 @@ function updateTeams () {
     // Create list item with team name and delete button
     const listItem = document.createElement('li')
     listItem.textContent = team
+
     const deleteButton = document.createElement('button')
     deleteButton.textContent = 'Delete'
     deleteButton.classList.add('button-small')
     deleteButton.addEventListener('click', function () {
       removeTeam(team)
     })
+
+    const logoButton = document.createElement('button')
+    logoButton.textContent = 'Upload logo'
+    logoButton.classList.add('button-small')
+    logoButton.addEventListener('click', function () {
+      uploadLogo(team)
+    })
+
+    const logoInput = document.createElement('input')
+    logoInput.type = 'text'
+    logoInput.placeholder = 'Enter logo URL'
+    logoInput.classList.add('logo-input')
+
     listItem.appendChild(deleteButton)
+    listItem.appendChild(logoButton)
     teamList.appendChild(listItem)
   })
 }
@@ -119,6 +138,14 @@ function removeTeam (teamName) {
     teams.splice(index, 1)
     localStorage.setItem('teams', JSON.stringify(teams))
     updateTeams()
+  }
+}
+
+function uploadLogo(teamName) {
+  let logo = prompt('Please enter a URL to the logo', './images/placeholder-logo.png')
+
+  if (logo != null) {
+    localStorage.setItem(teamName + '_logo', logo)
   }
 }
 
