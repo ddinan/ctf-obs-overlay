@@ -184,7 +184,16 @@ function updatePlayerHUD (player, data) {
     capturesSpan.style.padding = '0 12px 0 3px'
     capturesSpan.textContent = '0'
 
-    statsDiv.append(killsIcon, killsSpan, deathsIcon, deathsSpan, capturesIcon, capturesSpan)
+    const pointsIcon = document.createElement('i')
+    pointsIcon.style.color = 'lime';
+    pointsIcon.classList.add('fa-solid', 'fa-dollar-sign', 'stats-padding')
+
+    const pointsSpan = document.createElement('span')
+    pointsSpan.style.padding = '0 12px 0 3px'
+    pointsSpan.style.color = 'lime';
+    pointsSpan.textContent = '0'
+
+    statsDiv.append(killsIcon, killsSpan, deathsIcon, deathsSpan, capturesIcon, capturesSpan, pointsIcon, pointsSpan)
     infoDiv.append(usernameP, statsDiv)
     if (team1Roster.includes(player)) element.append(img, infoDiv)
     else element.append(infoDiv, img)
@@ -200,9 +209,10 @@ function updatePlayerHUD (player, data) {
   // Update stats if they exist
   const statsDiv = element.querySelector('.stats')
   if (statsDiv) {
-    statsDiv.querySelector('.fa-skull + span').textContent = data.kills
-    statsDiv.querySelector('.fa-cross + span').textContent = data.deaths
+    statsDiv.querySelector('.fa-crosshairs + span').textContent = data.kills
+    statsDiv.querySelector('.fa-skull + span').textContent = data.deaths
     statsDiv.querySelector('.fa-flag + span').textContent = data.captures
+    statsDiv.querySelector('.fa-dollar-sign + span').textContent = data.points
   }
 }
 
