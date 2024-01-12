@@ -244,8 +244,16 @@ body {
 
 .team1-roster li,
 .team2-roster li {
-	font-size: 14px;
+	font-size: 12px;
 	margin-bottom: 5px;
+}
+
+.team1-roster li {
+	margin-left: 10px;
+}
+
+.team2-roster li {
+	margin-right: 10px;
 }
 
 .player-item {
@@ -284,7 +292,7 @@ body {
 
 .stats {
 	margin: 0;
-	font-size: 14px;
+	font-size: 12px;
 }
 
 .border-gradient {

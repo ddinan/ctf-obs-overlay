@@ -229,7 +229,8 @@ function fetchPlayerData () {
           const offlineData = {
             kills: 0,
             deaths: 0,
-            captures: 0
+            captures: 0,
+            points: 0
           }
           updatePlayerHUD(player, offlineData)
         } else {
@@ -260,7 +261,8 @@ function setupInitialHUDs () {
     const offlineData = {
       kills: 0,
       deaths: 0,
-      captures: 0
+      captures: 0,
+      points: 0
     }
 
     updatePlayerHUD(player, offlineData)
