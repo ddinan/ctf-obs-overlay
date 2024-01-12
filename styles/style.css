@@ -10,7 +10,9 @@
 body {
 	/*background: url('https://i.imgur.com/Fi6Hqof.png');*/
 	font-family: 'Montserrat', sans-serif;
-	/*background-color: transparent;*/
+	border: 10px solid;
+	border-image: linear-gradient(to right, #511A22 0%, #e90d2a 10%, #e90d2a 50%, #108fff 50%, #108fff 80%, #1B3B57 100%) 5;
+	height: 98vh;
 }
 
 .container {
@@ -23,7 +25,6 @@ body {
 .scoreboard {
 	display: flex;
 	justify-content: center;
-	margin-top: 20px;
 	background: #090916;
 	font-weight: bold;
 	text-transform: uppercase;
@@ -44,18 +45,57 @@ body {
 	max-width: 300px;
 }
 
-.team-content:nth-of-type(1) {
-	/*background: #e12033;*/
-	background: linear-gradient(45deg, #e90d2a40, #e90d2a);
+.red-bg {
+	background: transparent;
 	padding-right: 20px;
 	justify-content: left;
+	position: relative;
 }
 
-.team-content:nth-of-type(5) {
-	/*background: #108cff;*/
-	background: linear-gradient(45deg, #108fff, #108fff40);
+.red-bg p, .red-bg img {
+	z-index: 1;
+}
+
+.red-bg::before,
+.red-bg::after {
+	content: "";
+	position: absolute;
+	top: 0;
+	width: 50%;
+	height: 100%;
+	background: linear-gradient(90deg, #4d131b, #e90d2a);
+	z-index: 0;
+}
+
+.red-bg::after {
+	right: 0;
+	clip-path: polygon(100% 0, 0 0, 0% 100%, 70% 100%);
+	background: #e90d2a;
+}
+
+.blue-bg {
+	background: transparent;
 	padding-left: 20px;
+	margin-left: -80px;
 	justify-content: right;
+	position: relative;
+}
+
+.blue-bg::before,
+.blue-bg::after {
+	content: "";
+	position: absolute;
+	top: 0;
+	width: 50%;
+	height: 100%;
+	background: linear-gradient(90deg, #108fff, #1B3B57);
+	z-index: 0;
+}
+
+.blue-bg::before {
+	left: 0;
+	clip-path: polygon(0 0, 100% 0, 100% 100%, 30% 100%);
+	background: #108fff;
 }
 
 .team-content p {
@@ -79,9 +119,10 @@ body {
 
 .timer {
 	padding: 0px 50px;
-  width: 80px;
+  	width: 80px;
 	font-size: 32px;
 	margin-top: 12.5px;
+	text-align: center;
 }
 
 .team-input {
@@ -147,18 +188,15 @@ body {
 .team1-roster,
 .team2-roster {
 	position: absolute;
-	bottom: 45%;
+	top: 0;
 	width: 240px;
-	padding: 15px;
 }
 
 .team1-roster {
-	padding-left: 0px;
 	left: 0;
 }
 
 .team2-roster {
-	padding-right: 0px;
 	right: 0;
 	text-align: right;
 }
@@ -230,19 +268,19 @@ body {
 }
 
 .border-gradient-red {
-	border-image-source: linear-gradient(to left, #e90d2a40, #e90d2a);
+	border-image-source: linear-gradient(90deg, #4d131b, #e90d2a);
 }
 
 .border-gradient-blue {
-	border-image-source: linear-gradient(to right, #108fff, #108fff40);
+	border-image-source: linear-gradient(90deg, #108fff, #108fff40);
 }
 
 .red {
-	background: rgba(0, 0, 0, 0.7);
+	background: #090916;
 }
 
 .blue {
-	background: rgba(0, 0, 0, 0.7);
+	background: #090916;
 }
 
 .game-wins {
@@ -322,7 +360,7 @@ body {
 }
 
 .kill-feed-item {
-	background: linear-gradient(45deg, #e90d2a, #108fff);
+	background: linear-gradient(90deg, #e90d2a, #108fff);
 	text-align: center;
 	padding: 10px 5px;
 	/*margin-bottom: 5px;*/
