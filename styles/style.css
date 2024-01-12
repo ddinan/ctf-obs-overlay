@@ -11,7 +11,7 @@ body {
 	/*background: url('https://i.imgur.com/Fi6Hqof.png');*/
 	font-family: 'Montserrat', sans-serif;
 	border: 10px solid;
-	border-image: linear-gradient(to right, #511A22 0%, #e90d2a 10%, #e90d2a 50%, #108fff 50%, #108fff 80%, #1B3B57 100%) 5;
+	border-image: linear-gradient(to right, #511A22 0%, #e90d2a 10%, #e90d2a 50%, #108fff 50%, #108fff 85%, #1B3B57 100%) 5;
 	height: 98vh;
 }
 
@@ -22,14 +22,41 @@ body {
 	height: 100vh;
 }
 
+.scoreboard * {
+	z-index: 1;
+}
+
 .scoreboard {
 	display: flex;
 	justify-content: center;
-	background: #090916;
+	background: transparent;
 	font-weight: bold;
 	text-transform: uppercase;
 	font-size: 24px;
 	color: #ffffff;
+	position: relative;
+	width: 450px;
+}
+
+.scoreboard::before,
+.scoreboard::after {
+	content: "";
+	position: absolute;
+	top: 0;
+	width: 25%;
+	height: 100%;
+	background: #090916;
+	z-index: 0;
+}
+
+.scoreboard::before {
+	left: 0;
+	clip-path: polygon(0 0, 100% 0, 100% 100%, 30% 100%);
+}
+
+.scoreboard::after {
+	right: 0;
+	clip-path: polygon(100% 0, 0 0, 0% 100%, 70% 100%);
 }
 
 .team-content,
@@ -45,15 +72,16 @@ body {
 	max-width: 300px;
 }
 
+.red-bg *, .blue-bg * {
+	z-index: 1;
+	color: white;
+}
+
 .red-bg {
 	background: transparent;
 	padding-right: 20px;
 	justify-content: left;
 	position: relative;
-}
-
-.red-bg p, .red-bg img {
-	z-index: 1;
 }
 
 .red-bg::before,
@@ -103,7 +131,7 @@ body {
 }
 
 .score-content {
-	background-color: transparent;
+	background: #090916;
 	width: 34px;
 	font-size: 48px;
 	padding: 0px 25px;
@@ -118,10 +146,11 @@ body {
 }
 
 .timer {
+	background: #090916;
 	padding: 0px 50px;
   	width: 80px;
 	font-size: 32px;
-	margin-top: 12.5px;
+	padding-top: 12.5px;
 	text-align: center;
 }
 
@@ -272,15 +301,11 @@ body {
 }
 
 .border-gradient-blue {
-	border-image-source: linear-gradient(90deg, #108fff, #108fff40);
+	border-image-source: linear-gradient(90deg, #108fff, #1B3B57);
 }
 
-.red {
-	background: #090916;
-}
-
-.blue {
-	background: #090916;
+.red, .blue {
+	background: #090916cc;
 }
 
 .game-wins {

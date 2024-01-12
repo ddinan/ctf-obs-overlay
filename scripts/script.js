@@ -23,7 +23,7 @@ function setTeamNameFontSize () {
   const team2NameElement = document.getElementById('team2')
 
   const maxFontSize = 24 // Maximum font size you want to allow
-  const maxNameLength = 6 // Maximum characters you want to display without resizing
+  const maxNameLength = 10 // Maximum characters you want to display without resizing
 
   // Calculate the font size based on the length of the team names
   const team1Name = team1NameElement.textContent
@@ -164,14 +164,14 @@ function updatePlayerHUD (player, data) {
 
     // Create spans for kills, deaths, and captures with initial value '0'
     const killsIcon = document.createElement('i')
-    killsIcon.classList.add('fa-solid', 'fa-skull', 'stats-padding')
+    killsIcon.classList.add('fa-solid', 'fa-crosshairs', 'stats-padding')
 
     const killsSpan = document.createElement('span')
     killsSpan.style.padding = '0 12px 0 3px'
     killsSpan.textContent = '0'
 
     const deathsIcon = document.createElement('i')
-    deathsIcon.classList.add('fa-solid', 'fa-cross', 'stats-padding')
+    deathsIcon.classList.add('fa-solid', 'fa-skull', 'stats-padding')
 
     const deathsSpan = document.createElement('span')
     deathsSpan.style.padding = '0 12px 0 3px'
