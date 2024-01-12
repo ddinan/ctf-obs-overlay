@@ -95,7 +95,7 @@ function updateTeams () {
 
     const deleteButton = document.createElement('button')
     deleteButton.textContent = 'Delete'
-    deleteButton.classList.add('button-small')
+    deleteButton.classList.add('button-small-red')
     deleteButton.addEventListener('click', function () {
       removeTeam(team)
     })
@@ -106,11 +106,6 @@ function updateTeams () {
     logoButton.addEventListener('click', function () {
       uploadLogo(team)
     })
-
-    const logoInput = document.createElement('input')
-    logoInput.type = 'text'
-    logoInput.placeholder = 'Enter logo URL'
-    logoInput.classList.add('logo-input')
 
     listItem.appendChild(deleteButton)
     listItem.appendChild(logoButton)

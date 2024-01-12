@@ -127,7 +127,7 @@ body {
 }
 
 .team-content p {
-	margin-right: 10px;
+	margin: 0px 10px;
 }
 
 .score-content {
@@ -185,7 +185,8 @@ body {
 }
 
 .button,
-.button-small {
+.button-small,
+.button-small-red {
 	color: #ffffff;
 	border: none;
 	border-radius: 4px;
@@ -199,18 +200,25 @@ body {
 	margin: 0 10px;
 }
 
-.button:hover {
+.button:hover, .button-small:hover {
 	background-color: #691fb3;
 }
 
-.button-small {
-	background-color: #DC3545;
+.button-small, .button-small-red {
 	padding: 5px;
 	font-size: 12px;
 	margin: 0 10px;
 }
 
-.button-small:hover {
+.button-small {
+	background-color: #9147ff;
+}
+
+.button-small-red {
+	background-color: #DC3545;
+}
+
+.button-small-red:hover {
 	background-color: #a0222c;
 }
 
