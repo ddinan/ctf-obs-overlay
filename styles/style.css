@@ -59,6 +59,65 @@ body {
 	clip-path: polygon(100% 0, 0 0, 0% 100%, 70% 100%);
 }
 
+.event-name-banner * {
+	z-index: 1;
+}
+
+.event-name-banner {
+    display: flex;
+    justify-content: center;
+    background: transparent;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 24px;
+    color: #ffffff;
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 680px;
+    height: 75px;
+}
+
+.event-name-banner::before,
+.event-name-banner::after {
+	content: "";
+	position: absolute;
+	bottom: 0;
+	width: 25%;
+	height: 100%;
+	background: #090916;
+	z-index: 0;
+}
+
+.event-name-banner::before {
+    left: 0;
+    clip-path: polygon(100% -130%, 0% 100%, 100% 100%);
+}
+
+.event-name-banner::after {
+    right: 0;
+    clip-path: polygon(0 0, 0 -130%, 100% 100%, 30% 100%);
+}
+
+.event-name-content {
+	background: #090916;
+  	width: 500px;
+	font-size: 24px;
+	text-align: center;
+}
+
+.event-name-content img {
+	padding-top: 5px;
+	float: left;
+	width: 64px;
+	height: 64px;
+}
+
+.event-name-content p {
+	padding-top: 22.5px;
+}
+
 .team-content,
 .score-content,
 .event-content {

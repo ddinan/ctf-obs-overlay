@@ -14,6 +14,9 @@ function reload () {
   // Update game wins display
   const maxGames = localStorage.getItem('maxGames')
   updateGameWins(maxGames)
+
+  const eventName = localStorage.getItem('eventName')
+  updateEventName(eventName)
 }
 
 reload()
@@ -45,11 +48,13 @@ function setTeamNameFontSize () {
 let lastTeam1 = localStorage.getItem('team1')
 let lastTeam2 = localStorage.getItem('team2')
 let lastMaxGames = localStorage.getItem('maxGames')
+let lastEventName = localStorage.getItem('eventName')
 
 function checkAndUpdate () {
   const currentTeam1 = localStorage.getItem('team1')
   const currentTeam2 = localStorage.getItem('team2')
   const currentMaxGames = localStorage.getItem('maxGames')
+  const currentEventName = localStorage.getItem('eventName')
 
   let hasChanges = false
 
@@ -61,6 +66,10 @@ function checkAndUpdate () {
     hasChanges = true
   }
 
+  if (currentEventName !== lastEventName) {
+    hasChanges = true
+  }
+
   if (hasChanges) {
     reload() // Update the information
 
@@ -68,6 +77,7 @@ function checkAndUpdate () {
     lastTeam1 = currentTeam1
     lastTeam2 = currentTeam2
     lastMaxGames = currentMaxGames
+    lastEventName = currentEventName
   }
 
   // Schedule the next check
@@ -116,11 +126,16 @@ function updateGameWins (maxGames) {
     team2Wins.appendChild(team2WinElement)
   }
 
-  const gameInfo = document.getElementById("game-info");
+  const gameInfo = document.getElementById('game-info');
 
   // Update the content of the existing <p> element
   const gameNumber = (parseInt(localStorage.getItem('team1Wins')) || 0) + (parseInt(localStorage.getItem('team2Wins')) || 0) + 1
-  gameInfo.innerHTML = "Game " + gameNumber + " <span style='color: gray;'>|</span> <span style='color: white;'>Best of " + (maxGames || 1) + "</span>"
+  gameInfo.innerHTML = 'Game ' + gameNumber + ' <span style="color: gray;">|</span> <span style="color: white;">Best of ' + (maxGames || 1) + '</span>'
+}
+
+function updateEventName(eventName) {
+  const eventBanner = document.getElementById('event-banner-text');
+  eventBanner.innerHTML = eventName || 'New Year 2024 Tournament'
 }
 
 function fetchGameData () {
@@ -207,6 +222,7 @@ function updatePlayerHUD (player, data) {
 
     statsDiv.append(killsIcon, killsSpan, deathsIcon, deathsSpan, capturesIcon, capturesSpan, pointsIcon, pointsSpan)
     infoDiv.append(usernameP, statsDiv)
+
     if (team1Roster.includes(player)) element.append(img, infoDiv)
     else element.append(infoDiv, img)
 
@@ -243,6 +259,7 @@ function fetchPlayerData () {
             captures: 0,
             points: 0
           }
+
           updatePlayerHUD(player, offlineData)
         } else {
           updatePlayerHUD(player, data)
