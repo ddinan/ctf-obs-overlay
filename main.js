@@ -125,6 +125,19 @@ app.whenReady().then(() => {
         res.end(data)
       })
     }
+
+    else if (req.url === '/be-right-back.html') {
+      fs.readFile(__dirname + '/be-right-back.html', (err, data) => {
+        if (err) {
+          res.writeHead(404)
+          res.end(JSON.stringify(err))
+          return
+        }
+  
+        res.writeHead(200, { 'Content-Type': 'text/html' })
+        res.end(data)
+      })
+    }
     
     else if (req.url === '/bracket.html') {
       fs.readFile(__dirname + '/bracket.html', (err, data) => {

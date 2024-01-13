@@ -13,6 +13,7 @@ body {
 	border: 10px solid;
 	border-image: linear-gradient(to right, #511A22 0%, #e90d2a 10%, #e90d2a 50%, #108fff 50%, #108fff 85%, #1B3B57 100%) 5;
 	height: 98vh;
+	overflow-y: scroll;
 }
 
 .container {
@@ -72,7 +73,7 @@ body {
     font-size: 24px;
     color: #ffffff;
     position: absolute;
-    bottom: -2px;
+    bottom: -1px;
     left: 50%;
     transform: translateX(-50%);
     width: 680px;
