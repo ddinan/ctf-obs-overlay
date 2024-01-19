@@ -139,7 +139,7 @@ function updateEventName(eventName) {
 }
 
 function fetchGameData () {
-  fetch('http://localhost:22000/api/game')
+  fetch('http://jacobsc.tf:22000/api/game')
     .then(response => response.json())
     .then(data => {
       updateScoreboardHUD(data)
@@ -248,7 +248,7 @@ function fetchPlayerData () {
   const allPlayers = [...team1Roster, ...team2Roster]
 
   allPlayers.forEach(player => {
-    fetch(`http://localhost:22000/api/player?p=${player}`)
+    fetch(`http://jacobsc.tf:22000/api/player?p=${player}`)
       .then(response => response.json())
       .then(data => {
         if (data.error === 'Player not found.') {
