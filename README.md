@@ -2,27 +2,26 @@
 
 This OBS overlay is specifically designed for the [Jacob's CTF](https://jacobsc.tf) ClassiCube server. It includes a comprehensive suite of features to visually enhance the quality of tournament streams. 
 
+![image](https://github.com/ddinan/ctf-obs-overlay/assets/19647340/fc86d98c-c9a9-44e0-a4f6-d191b84b4039)
+
 ## Key Features
 
-- **Direct linking** The software uses the Jacob's CTF server API for grabbing information.
+- **Direct linking:** The software uses the Jacob's CTF server API for grabbing information.
 - **Scoreboard:** Keep track of team scores automatically.
 - **Round Timer:** Ensure precise timing for each round.
 - **Team Overlays:** Display team names and roster.
 - **Player Stat Tracking:** Monitor kills, deaths, captures, and points.
 - **Control Panel:** Easily configure team names for seamless integration.
-- **Map ban screen** Configure and select/deselect maps to visualize team map bans.
-- **'Starting soon' screen** Let your viewers know that the stream is starting soon.
-- **Bracket screen** A direct Challonge integration to show the bracket and upcoming matches.
+- **Map banning screen:** Configure and select/deselect maps to visualize team map bans.
+- **'Starting soon' screen:** Let your viewers know that the stream is starting soon.
+- **Intermission screen:** Let your viewers know that the stream will resume soon.
+- **Bracket screen:** A direct Challonge integration to show the bracket and upcoming matches.
+- **Custom Team Profile Pictures:** Add a personalized touch to team identities.
 
-All statistics are synchronized with the CTF server.
+All statistics are updated in real-time with the CTF server.
 
 ## Planned Features
-- **Intermission screen** Let your viewers know that the stream will resume soon.
-- **Kill Feed:** Get instant updates on player kills, flag grabs, and captures.
-- **Custom Team Profile Pictures:** Add a personalized touch to team identities.
-- **Team list** Show a list of teams and their rosters for team introduction.
-
-Stay tuned for these upcoming features!
+- **Team list:** Show a list of teams and their rosters for team introduction.
 
 ## Installation
 
