@@ -126,30 +126,97 @@ function updateGameWins (maxGames) {
     team2Wins.appendChild(team2WinElement)
   }
 
-  const gameInfo = document.getElementById('game-info');
+  const gameInfo = document.getElementById('game-info')
 
   // Update the content of the existing <p> element
   const gameNumber = (parseInt(localStorage.getItem('team1Wins')) || 0) + (parseInt(localStorage.getItem('team2Wins')) || 0) + 1
-  gameInfo.innerHTML = 'Game ' + gameNumber + ' <span style="color: gray;">|</span> <span style="color: white;">Best of ' + (maxGames || 1) + '</span>'
+  gameInfo.innerHTML = 'Game ' + gameNumber + ' <span style="color: gray">|</span> <span style="color: white">Best of ' + (maxGames || 1) + '</span>'
 }
 
 function updateEventName(eventName) {
-  const eventBanner = document.getElementById('event-banner-text');
+  const eventBanner = document.getElementById('event-banner-text')
   eventBanner.innerHTML = eventName || 'New Year 2024 Tournament'
 }
 
-function fetchGameData () {
-  fetch('http://jacobsc.tf:22000/api/game')
+function fetchGameData() {
+  fetch('http://localhost:22000/api/game')
     .then(response => response.json())
     .then(data => {
       updateScoreboardHUD(data)
 
-      // Update team rosters based on the response
-      team1Roster = data.redPlayers || []
-      team2Roster = data.bluePlayers || []
+      // Check if team rosters have changed
+      const newTeam1Roster = data.redPlayers || []
+      const newTeam2Roster = data.bluePlayers || []
 
-      // Call the reload function with updated rosters
-      reload()
+      // Log players who switched teams
+      const switchedFromRedToBlue = team1Roster.filter(player => !newTeam1Roster.includes(player) && newTeam2Roster.includes(player))
+      const switchedFromBlueToRed = team2Roster.filter(player => !newTeam2Roster.includes(player) && newTeam1Roster.includes(player))
+
+      // Log players who switched to the spectator team
+      const switchedToSpectatorFromRed = team1Roster.filter(player => !newTeam1Roster.includes(player) && !newTeam2Roster.includes(player))
+      const switchedToSpectatorFromBlue = team2Roster.filter(player => !newTeam2Roster.includes(player) && !newTeam1Roster.includes(player))
+
+      if (switchedToSpectatorFromRed.length > 0) {
+        console.log(`Players ${switchedToSpectatorFromRed.join(', ')} switched from red to spectator.`)
+        switchedToSpectatorFromRed.forEach(player => {
+          const element = document.getElementById(`player-${player}`)
+          if (element) {
+            element.remove() // Remove the player from the old team
+          }
+        })
+      }
+
+      if (switchedToSpectatorFromBlue.length > 0) {
+        console.log(`Players ${switchedToSpectatorFromBlue.join(', ')} switched from blue to spectator.`)
+        switchedToSpectatorFromBlue.forEach(player => {
+          const element = document.getElementById(`player-${player}`)
+          if (element) {
+            element.remove() // Remove the player from the old team
+          }
+        })
+      }
+
+      // Update local team rosters
+      team1Roster = newTeam1Roster
+      team2Roster = newTeam2Roster
+
+      if (switchedFromRedToBlue.length > 0) {
+        console.log(`Players ${switchedFromRedToBlue.join(', ')} switched from red to blue.`)
+        switchedFromRedToBlue.forEach(player => {
+          const element = document.getElementById(`player-${player}`)
+          if (element) {
+            element.remove() // Remove the player from the old team
+          }
+
+          const offlineData = {
+            kills: 0,
+            deaths: 0,
+            captures: 0,
+            points: 0
+          }
+
+          updatePlayerHUD(player, offlineData)
+        })
+      }
+
+      if (switchedFromBlueToRed.length > 0) {
+        console.log(`Players ${switchedFromBlueToRed.join(', ')} switched from blue to red.`)
+        switchedFromBlueToRed.forEach(player => {
+          const element = document.getElementById(`player-${player}`)
+          if (element) {
+            element.remove() // Remove the player from the old team
+          }
+
+          const offlineData = {
+            kills: 0,
+            deaths: 0,
+            captures: 0,
+            points: 0
+          }
+
+          updatePlayerHUD(player, offlineData)
+        })
+      }
     })
     .catch(error => console.error('Error:', error))
 }
@@ -212,12 +279,12 @@ function updatePlayerHUD (player, data) {
     capturesSpan.textContent = '0'
 
     const pointsIcon = document.createElement('i')
-    pointsIcon.style.color = 'lime';
+    pointsIcon.style.color = 'lime'
     pointsIcon.classList.add('fa-solid', 'fa-dollar-sign', 'stats-padding')
 
     const pointsSpan = document.createElement('span')
     pointsSpan.style.padding = '0 12px 0 3px'
-    pointsSpan.style.color = 'lime';
+    pointsSpan.style.color = 'lime'
     pointsSpan.textContent = '0'
 
     statsDiv.append(killsIcon, killsSpan, deathsIcon, deathsSpan, capturesIcon, capturesSpan, pointsIcon, pointsSpan)
@@ -248,7 +315,7 @@ function fetchPlayerData () {
   const allPlayers = [...team1Roster, ...team2Roster]
 
   allPlayers.forEach(player => {
-    fetch(`http://jacobsc.tf:22000/api/player?p=${player}`)
+    fetch(`http://localhost:22000/api/player?p=${player}`)
       .then(response => response.json())
       .then(data => {
         if (data.error === 'Player not found.') {
