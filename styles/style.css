@@ -11,7 +11,7 @@ body {
 	/*background: url('https://i.imgur.com/Fi6Hqof.png');*/
 	font-family: 'Montserrat', sans-serif;
 	border: 10px solid;
-	border-image: linear-gradient(to right, #511A22 0%, #e90d2a 10%, #e90d2a 50%, #108fff 50%, #108fff 85%, #1B3B57 100%) 5;
+	border-image: linear-gradient(to right, #e90d2a 0%, #e90d2a 10%, #e90d2a 50%, #108fff 50%, #108fff 85%, #108fff 100%) 5;
 	height: 98vh;
 	overflow-y: scroll;
 }
@@ -151,7 +151,7 @@ body {
 	top: 0;
 	width: 50%;
 	height: 100%;
-	background: linear-gradient(90deg, #4d131b, #e90d2a);
+	background: linear-gradient(90deg, #e90d2a, #e90d2a);
 	z-index: 0;
 }
 
@@ -176,7 +176,7 @@ body {
 	top: 0;
 	width: 50%;
 	height: 100%;
-	background: linear-gradient(90deg, #108fff, #1B3B57);
+	background: linear-gradient(90deg, #108fff, #108fff);
 	z-index: 0;
 }
 
@@ -373,11 +373,11 @@ body {
 }
 
 .border-gradient-red {
-	border-image-source: linear-gradient(90deg, #4d131b, #e90d2a);
+	border-image-source: linear-gradient(90deg, #e90d2a, #e90d2a);
 }
 
 .border-gradient-blue {
-	border-image-source: linear-gradient(90deg, #108fff, #1B3B57);
+	border-image-source: linear-gradient(90deg, #108fff, #108fff);
 }
 
 .red, .blue {
