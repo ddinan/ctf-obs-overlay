@@ -146,8 +146,8 @@ function removeTeam (teamName) {
   }
 }
 
-function uploadLogo(teamName) {
-  let logo = prompt('Please enter a URL to the logo', './images/placeholder-logo.png')
+function uploadLogo (teamName) {
+  const logo = prompt('Please enter a URL to the logo', './images/placeholder-logo.png')
 
   if (logo != null) {
     localStorage.setItem(teamName + '_logo', logo)

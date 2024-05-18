@@ -47,11 +47,15 @@ function setTeamNameFontSize () {
 
 let lastTeam1 = localStorage.getItem('team1')
 let lastTeam2 = localStorage.getItem('team2')
+let lastTeam1Wins = localStorage.getItem('team1Wins')
+let lastTeam2Wins = localStorage.getItem('team2Wins')
 let lastMaxGames = localStorage.getItem('maxGames')
 let lastEventName = localStorage.getItem('eventName')
 
 function checkAndUpdate () {
   const currentTeam1 = localStorage.getItem('team1')
+  const currentTeam1Wins = localStorage.getItem('team1Wins')
+  const currentTeam2Wins = localStorage.getItem('team2Wins')
   const currentTeam2 = localStorage.getItem('team2')
   const currentMaxGames = localStorage.getItem('maxGames')
   const currentEventName = localStorage.getItem('eventName')
@@ -59,6 +63,10 @@ function checkAndUpdate () {
   let hasChanges = false
 
   if (currentTeam1 !== lastTeam1 || currentTeam2 !== lastTeam2) {
+    hasChanges = true
+  }
+
+  if (currentTeam1Wins !== lastTeam1Wins || currentTeam2Wins !== lastTeam2Wins) {
     hasChanges = true
   }
 
@@ -75,7 +83,9 @@ function checkAndUpdate () {
 
     // Update last known state
     lastTeam1 = currentTeam1
+    lastTeam1Wins = currentTeam1Wins
     lastTeam2 = currentTeam2
+    lastTeam2Wins = currentTeam2Wins
     lastMaxGames = currentMaxGames
     lastEventName = currentEventName
   }
@@ -133,13 +143,13 @@ function updateGameWins (maxGames) {
   gameInfo.innerHTML = 'Game ' + gameNumber + ' <span style="color: gray">|</span> <span style="color: white">Best of ' + (maxGames || 1) + '</span>'
 }
 
-function updateEventName(eventName) {
+function updateEventName (eventName) {
   const eventBanner = document.getElementById('event-banner-text')
   eventBanner.innerHTML = eventName || 'New Year 2024 Tournament'
 }
 
-function fetchGameData() {
-  fetch('http://localhost:22000/api/game')
+function fetchGameData () {
+  fetch('http://jacobsc.tf:22000/api/game')
     .then(response => response.json())
     .then(data => {
       updateScoreboardHUD(data)
@@ -315,7 +325,7 @@ function fetchPlayerData () {
   const allPlayers = [...team1Roster, ...team2Roster]
 
   allPlayers.forEach(player => {
-    fetch(`http://localhost:22000/api/player?p=${player}`)
+    fetch(`http://jacobsc.tf:22000/api/player?p=${player}`)
       .then(response => response.json())
       .then(data => {
         if (data.error === 'Player not found.') {
