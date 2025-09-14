@@ -149,20 +149,19 @@ function updateEventName (eventName) {
 }
 
 function fetchGameData () {
-  fetch('http://jacobsc.tf:22000/api/game')
+  fetch('http://localhost:22000/api/game')
     .then(response => response.json())
     .then(data => {
       updateScoreboardHUD(data)
 
-      // Check if team rosters have changed
       const newTeam1Roster = data.redPlayers || []
       const newTeam2Roster = data.bluePlayers || []
 
-      // Log players who switched teams
+      // Players who switched teams
       const switchedFromRedToBlue = team1Roster.filter(player => !newTeam1Roster.includes(player) && newTeam2Roster.includes(player))
       const switchedFromBlueToRed = team2Roster.filter(player => !newTeam2Roster.includes(player) && newTeam1Roster.includes(player))
 
-      // Log players who switched to the spectator team
+      // Players who switched to the spectator team
       const switchedToSpectatorFromRed = team1Roster.filter(player => !newTeam1Roster.includes(player) && !newTeam2Roster.includes(player))
       const switchedToSpectatorFromBlue = team2Roster.filter(player => !newTeam2Roster.includes(player) && !newTeam1Roster.includes(player))
 
@@ -171,7 +170,7 @@ function fetchGameData () {
         switchedToSpectatorFromRed.forEach(player => {
           const element = document.getElementById(`player-${player}`)
           if (element) {
-            element.remove() // Remove the player from the old team
+            element.remove()
           }
         })
       }
@@ -181,7 +180,7 @@ function fetchGameData () {
         switchedToSpectatorFromBlue.forEach(player => {
           const element = document.getElementById(`player-${player}`)
           if (element) {
-            element.remove() // Remove the player from the old team
+            element.remove()
           }
         })
       }
@@ -194,7 +193,7 @@ function fetchGameData () {
         switchedFromRedToBlue.forEach(player => {
           const element = document.getElementById(`player-${player}`)
           if (element) {
-            element.remove() // Remove the player from the old team
+            element.remove()
           }
 
           const offlineData = {
@@ -319,7 +318,7 @@ function fetchPlayerData () {
   const allPlayers = [...team1Roster, ...team2Roster]
 
   allPlayers.forEach(player => {
-    fetch(`http://jacobsc.tf:22000/api/player?p=${player}`)
+    fetch(`http://localhost:22000/api/player?p=${player}`)
       .then(response => response.json())
       .then(data => {
         if (data.error === 'Player not found.') {
@@ -376,3 +375,69 @@ function checkAndSetupInitialHUDs () {
 }
 
 checkAndSetupInitialHUDs()
+
+function showMinimap() {
+  const minimapImage = new Image()
+  minimapImage.src = 'http://localhost:22000/minimap.png'
+  minimapImage.id = 'minimap'
+
+  minimapImage.onload = () => {
+    const minimapContainer = document.getElementById('minimap-container')
+    minimapContainer.appendChild(minimapImage)
+  }
+
+  minimapImage.onerror = () => {
+    console.error('Minimap image could not be loaded.')
+  }
+}
+
+function updatePlayerFacesOnMinimap() {
+  const allPlayers = [...team1Roster, ...team2Roster]
+
+  allPlayers.forEach(player => {
+    fetch(`http://localhost:22000/api/player?p=${player}`)
+      .then(response => response.json())
+      .then(data => {
+        if (data.error !== 'Player not found.') {
+          const playerPosition = data.position
+          const playerX = playerPosition[0]
+          const playerZ = playerPosition[2]
+
+          const minimapContainer = document.getElementById('minimap-container')
+
+          const imageUpscaleFactor = 3
+          const normalizedX = playerX * imageUpscaleFactor
+          const normalizedZ = playerZ * imageUpscaleFactor
+
+          let playerFace = document.getElementById(`player-face-${player}`)
+
+          if (!playerFace) {
+            teamColor = team1Roster.includes(player) ? '#E90D2A' : '#108FFF'
+
+            playerFace = document.createElement('img')
+            playerFace.id = `player-face-${player}`
+            playerFace.src = `https://123dmwm.com/img/skin/3d.php?user=${player}`
+            playerFace.width = 16
+            playerFace.height = 16
+            playerFace.style.position = 'absolute'
+            playerFace.style.borderRadius = '50%'
+            playerFace.style.border = `2px solid ${teamColor}`
+
+            minimapContainer.appendChild(playerFace)
+          }
+
+          playerFace.style.left = `${normalizedX - 8}px`
+          playerFace.style.top = `${normalizedZ - 8}px`
+        }
+      })
+      .catch(error => console.error(`Error fetching data for ${player}:`, error))
+  })
+}
+
+function setupMinimapAndPlayerFaces() {
+  showMinimap()
+  setInterval(updatePlayerFacesOnMinimap, 1000) // Update player faces every 5 seconds
+}
+
+setupMinimapAndPlayerFaces()
+

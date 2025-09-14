@@ -197,6 +197,26 @@ body {
 	padding: 0px 25px;
 }
 
+#minimap-container {
+	position: absolute;
+	left: 0;
+	top: 50%;
+	background: black;
+	
+}
+
+#minimap-container img {
+	image-rendering: pixelated;
+	image-rendering: -moz-crisp-edges;
+	image-rendering: crisp-edges;
+}
+
+#minimap {
+	width: 100%;
+	transform: scale(3);
+	transform-origin: top left;
+}
+
 /* Unused */
 .scores-extra {
 	display: flex;
@@ -334,6 +354,9 @@ body {
 	width: 48px;
 	height: 48px;
 	padding: 10px;
+	image-rendering: pixelated;
+	image-rendering: -moz-crisp-edges;
+	image-rendering: crisp-edges;
 }
 
 .left {
