@@ -75,19 +75,16 @@ eventNameInput.addEventListener('propertychange', function (e) {
   localStorage.setItem('eventName', e.target.value)
 })
 
-// Function to update the team selector options and team list
 function updateTeams () {
   const teamSelector1 = document.getElementById('team1-selector')
   const teamSelector2 = document.getElementById('team2-selector')
   const teamList = document.getElementById('team-list')
-  teamSelector1.innerHTML = '' // Clear existing options
-  teamSelector2.innerHTML = '' // Clear existing options
-  teamList.innerHTML = '' // Clear existing team list
+  teamSelector1.innerHTML = ''
+  teamSelector2.innerHTML = ''
+  teamList.innerHTML = ''
 
-  // Get teams from local storage or initialize empty array
-  const teams = JSON.parse(localStorage.getItem('teams')) || []
+  const teams = JSON.parse(localStorage.getItem('teams')) || [] // Try and get teams from local storage
 
-  // Create and append new option elements
   teams.forEach(function (team) {
     const option1 = document.createElement('option')
     option1.value = team
@@ -99,7 +96,6 @@ function updateTeams () {
     option2.text = team
     teamSelector2.appendChild(option2)
 
-    // Create list item with team name and delete button
     const listItem = document.createElement('li')
     listItem.textContent = team
 
@@ -123,19 +119,17 @@ function updateTeams () {
   })
 }
 
-// Function to handle adding a team
 function addTeam () {
   const teamName = document.getElementById('team-name-input').value
   if (teamName) {
     const teams = JSON.parse(localStorage.getItem('teams')) || []
     teams.push(teamName)
     localStorage.setItem('teams', JSON.stringify(teams))
-    document.getElementById('team-name-input').value = '' // Clear input
+    document.getElementById('team-name-input').value = ''
     updateTeams()
   }
 }
 
-// Function to handle removing a team
 function removeTeam (teamName) {
   const teams = JSON.parse(localStorage.getItem('teams')) || []
   const index = teams.indexOf(teamName)
@@ -154,14 +148,11 @@ function uploadLogo (teamName) {
   }
 }
 
-// Attach event listener to the add team button
 document.getElementById('add-team-button').addEventListener('click', addTeam)
 
-// Initial setup
 updateTeams()
 
 document.addEventListener('DOMContentLoaded', function () {
-  // Set input values for team selectors
   const team1Input = document.getElementById('team1-selector')
   const team2Input = document.getElementById('team2-selector')
   team1Input.value = localStorage.getItem('team1') || 'Team 1'

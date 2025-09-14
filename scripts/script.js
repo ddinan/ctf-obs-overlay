@@ -94,7 +94,7 @@ function checkAndUpdate () {
   setTimeout(checkAndUpdate, 1000) // Check every second
 }
 
-checkAndUpdate() // Start the process
+checkAndUpdate()
 
 function updateScoreboardHUD (data) {
   const timerElement = document.getElementById('timer')
@@ -186,7 +186,6 @@ function fetchGameData () {
         })
       }
 
-      // Update local team rosters
       team1Roster = newTeam1Roster
       team2Roster = newTeam2Roster
 
@@ -245,7 +244,7 @@ function updatePlayerHUD (player, data) {
       element.classList.add('blue', 'border-gradient-blue')
     }
 
-    // Create img element
+
     const img = document.createElement('img')
     img.src = `https://123dmwm.com/img/skin/3d.php?user=${player}`
     img.width = '48'
@@ -253,20 +252,16 @@ function updatePlayerHUD (player, data) {
     if (team1Roster.includes(player)) img.classList.add('left')
     else img.classList.add('right')
 
-    // Create div.info
     const infoDiv = document.createElement('div')
     infoDiv.classList.add('info')
 
-    // Create p.username
     const usernameP = document.createElement('p')
     usernameP.classList.add('username')
     usernameP.textContent = player
 
-    // Create div.stats
     const statsDiv = document.createElement('div')
     statsDiv.classList.add('stats')
 
-    // Create spans for kills, deaths, and captures with initial value '0'
     const killsIcon = document.createElement('i')
     killsIcon.classList.add('fa-solid', 'fa-crosshairs', 'stats-padding')
 
@@ -303,7 +298,6 @@ function updatePlayerHUD (player, data) {
     if (team1Roster.includes(player)) element.append(img, infoDiv)
     else element.append(infoDiv, img)
 
-    // Append the created element to the appropriate roster
     if (team1Roster.includes(player)) {
       document.querySelector('.team1-roster ul').appendChild(element)
     } else if (team2Roster.includes(player)) {
@@ -329,7 +323,6 @@ function fetchPlayerData () {
       .then(response => response.json())
       .then(data => {
         if (data.error === 'Player not found.') {
-          // Handle the case where player is not found (offline)
           const offlineData = {
             kills: 0,
             deaths: 0,
@@ -353,7 +346,7 @@ let gameDataIntervalStarted = false
 // Fetch game data every second
 setInterval(() => {
   fetchGameData()
-  gameDataIntervalStarted = true // Set the flag once the interval starts
+  gameDataIntervalStarted = true
 }, 1000)
 
 // Fetch player data every 5 seconds
@@ -374,14 +367,12 @@ function setupInitialHUDs () {
   })
 }
 
-// Check if the game data interval has started, and then set up initial HUDs
 function checkAndSetupInitialHUDs () {
   if (gameDataIntervalStarted) {
     setupInitialHUDs()
   } else {
-    setTimeout(checkAndSetupInitialHUDs, 100) // Check again in 100 milliseconds
+    setTimeout(checkAndSetupInitialHUDs, 100)
   }
 }
 
-// Start checking and setting up HUDs
 checkAndSetupInitialHUDs()

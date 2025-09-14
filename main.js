@@ -6,7 +6,7 @@ let mainWindow
 
 app.whenReady().then(() => {
   mainWindow = new BrowserWindow({ width: 800, height: 600 })
-  mainWindow.loadURL('http://localhost:3000') // Load a dummy URL
+  mainWindow.loadURL('http://localhost:3000')
 
   const server = http.createServer((req, res) => {
     if (req.url === '/') {
